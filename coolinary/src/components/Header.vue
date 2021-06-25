@@ -47,7 +47,7 @@
             >
               <ul class="dropdown__menu-nav">
                 <router-link to="/" class="styled-link">
-                  <li class="dropdown__menu-item">
+                  <li class="dropdown__menu-item" v-on:click="show = false">
                     <a href="#" class="dropdown__menu-link" title="Home">
                       <div class="dropdown__menu-svg">
                         <svg
@@ -67,7 +67,7 @@
                   </li>
                 </router-link>
                 <router-link to="/recipes" class="styled-link">
-                  <li class="dropdown__menu-item">
+                  <li class="dropdown__menu-item" v-on:click="show = false">
                     <a href="#" class="dropdown__menu-link" title="Recipes">
                       <div class="dropdown__menu-svg">
                         <svg
@@ -86,7 +86,7 @@
                     </a>
                   </li> </router-link
                 ><router-link to="/share-recipe" class="styled-link">
-                  <li class="dropdown__menu-item">
+                  <li class="dropdown__menu-item" v-on:click="show = false">
                     <a
                       href="#"
                       class="dropdown__menu-link"
@@ -109,7 +109,7 @@
                     </a>
                   </li> </router-link
                 ><router-link to="/profile" class="styled-link">
-                  <li class="dropdown__menu-item">
+                  <li class="dropdown__menu-item" v-on:click="show = false">
                     <a href="#" class="dropdown__menu-link" title="Profile">
                       <div class="dropdown__menu-svg">
                         <svg
@@ -131,7 +131,7 @@
                     </a>
                   </li> </router-link
                 ><router-link to="/about" class="styled-link">
-                  <li class="dropdown__menu-item">
+                  <li class="dropdown__menu-item" v-on:click="show = false">
                     <a href="#" class="dropdown__menu-link" title="About">
                       <div class="dropdown__menu-svg">
                         <svg
