@@ -23,27 +23,12 @@ const routes = [
   {
     path: '/recipes',
     name: 'Recipes',
-    component: () => import('../views/Recipes.vue')
+    component: () => import('../views/Recipes.vue'),
   },
   {
-    path: '/recipes/appetizers',
+    path: '/recipeslist',
     name: 'RecipesList',
-    component: () => import('../views/RecipesList.vue')
-  },
-  {
-    path: '/recipes/main-dishes',
-    name: 'RecipesList',
-    component: () => import('../views/RecipesList.vue')
-  },
-  {
-    path: '/recipes/snacks',
-    name: 'RecipesList',
-    component: () => import('../views/RecipesList.vue')
-  },
-  {
-    path: '/recipes/deserts',
-    name: 'RecipesList',
-    component: () => import('../views/RecipesList.vue')
+    component: () => import('../views/RecipesList.vue'),
   },
   {
     path: '/profile',

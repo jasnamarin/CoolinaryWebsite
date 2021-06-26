@@ -3,7 +3,7 @@
     <div class="gallery"
          v-for="photo in dictionary"
          :key="photo.id">
-      <router-link :to="`/recipes/${photo.breadcrumb}`">
+      <router-link to="/recipeslist">
         <img :src="thumbUrl(photo.filename)">
         <div class="centered">{{photo.title}}</div>
       </router-link>
@@ -24,7 +24,6 @@ export default {
     },
   },computed: {
     dictionary: function () {
-      console.log(this.$props.language)
       return this.$props.language === "english" ? engThumbnails : rsThumbnails;
     },
   },

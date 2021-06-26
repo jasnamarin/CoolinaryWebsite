@@ -1,6 +1,6 @@
 <template>
-  <div class="recipes-list">
-    Recipes List
+  <div>
+    <h1>Recipes List</h1>
   </div>
 </template>
 
@@ -11,11 +11,7 @@ import engLang from '@/assets/language/recipes/eng.json';
 export default {
   name: 'RecipesList',
   props: ["language"],
-  methods: {
-    thumbUrl(filename) {
-      return require(`../assets/images/thumbnails/${filename}`);
-    },
-  },computed: {
+  computed: {
     dictionary: function () {
       console.log(this.$props.language)
       return this.$props.language === "english" ? engLang : rsLang;
