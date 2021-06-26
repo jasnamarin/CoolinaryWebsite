@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="recipes_list">
     <h1>Recipes List</h1>
   </div>
 </template>
@@ -19,3 +19,13 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+
+    .recipes_list {
+        margin: 7rem auto;
+        width: 100vw;
+        height: 100wh;
+    }
+
+</style>
