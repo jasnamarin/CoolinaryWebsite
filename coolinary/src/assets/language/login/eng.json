@@ -1,0 +1,8 @@
+{
+    "header": "Login",
+    "username": "Username",
+    "password": "Password",
+    "signIn": "Sign In",
+    "noAccount": "Don't have an account? Create one",
+    "here": "here"
+}

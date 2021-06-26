@@ -1,4 +1,6 @@
 {
     "/": "Početna",
-    "/recipes": "Recepti"
+    "/recipes": "Recepti",
+    "/login": "Prijava na sistem",
+    "/register": "Registracija"
 }

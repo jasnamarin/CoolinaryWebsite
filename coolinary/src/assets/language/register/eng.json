@@ -1,0 +1,12 @@
+{
+    "header": "Register",
+    "username": "Username",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "password": "Password",
+    "passwordConfirmation": "Confirm password",
+    "signIn": "Sign Up",
+    "hasAccount": "Already have an account? Sign in",
+    "here": "here"
+}

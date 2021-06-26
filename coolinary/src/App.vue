@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header v-on:switchLanguage="switchLanguage" :language="language" />
-    <router-view />
+    <router-view :language="language" />
     <Footer />
   </div>
 </template>
@@ -41,9 +41,10 @@ export default {
   --font-primary: "Open Sans", sans-serif;
   --color-gray: #dadce0;
   --color-primary: #2c3e50;
+  --color-green: #17bf63;
+  --color-red: #F4394D;
+  --color-blue: #0D82EB;
 }
-
-// Global
 
 *,
 ::after,
