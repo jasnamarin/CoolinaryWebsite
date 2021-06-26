@@ -46,7 +46,7 @@ export default {
     Button,
     AlertBox,
   },
-  props: ["language"],
+  props: ["language", "refreshApp"],
   computed: {
     dictionary: function () {
       return this.$props.language === "english" ? englishDict : serbianDict;
@@ -85,6 +85,8 @@ export default {
       }
 
       window.localStorage.setItem("user", JSON.stringify(user));
+
+      this.$props.refreshApp();
 
       this.$router.push("/profile");
     },
