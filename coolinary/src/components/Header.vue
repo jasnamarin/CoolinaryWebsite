@@ -302,13 +302,15 @@ export default {
   top: 0;
   background: #fff;
   width: 100%;
+  z-index: 2;
 
   h2 {
     width: 420px;
+    text-align: left;
   }
   &__item {
     position: relative;
-    padding: 1rem;
+    padding: 1rem 0 1rem 1rem;
     display: flex;
     align-items: center;
   }
