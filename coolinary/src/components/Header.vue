@@ -85,7 +85,11 @@
                       </div>
                     </a>
                   </li> </router-link
-                ><router-link to="/share-recipe" class="styled-link">
+                ><router-link
+                  v-if="isLoggedIn"
+                  to="/share-recipe"
+                  class="styled-link"
+                >
                   <li class="dropdown__menu-item" v-on:click="show = false">
                     <a
                       href="#"
@@ -108,7 +112,11 @@
                       </div>
                     </a>
                   </li> </router-link
-                ><router-link to="/profile" class="styled-link">
+                ><router-link
+                  v-if="isLoggedIn"
+                  to="/profile"
+                  class="styled-link"
+                >
                   <li class="dropdown__menu-item" v-on:click="show = false">
                     <a href="#" class="dropdown__menu-link" title="Profile">
                       <div class="dropdown__menu-svg">
@@ -149,6 +157,58 @@
                       </div>
                       <div class="dropdown__menu-text">
                         {{ dictionary.about }}
+                      </div>
+                    </a>
+                  </li></router-link
+                >
+                <li
+                  v-if="isLoggedIn"
+                  class="dropdown__menu-item"
+                  v-on:click="logout"
+                >
+                  <a href="#" class="dropdown__menu-link" title="About">
+                    <div class="dropdown__menu-svg">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 512 512"
+                      >
+                        <defs />
+                        <path
+                          d="M301.697 491.922H90.785c-11.025 0-21.029-9.649-21.029-20.669V39.39c0-11.02 10.005-19.311 21.029-19.311h210.912c5.544 0 10.039-4.49 10.039-10.039 0-5.55-4.496-10.04-10.039-10.04H90.785C68.692 0 49.677 17.292 49.677 39.39v431.863C49.677 493.35 68.692 512 90.785 512h210.912c5.544 0 10.039-4.49 10.039-10.039s-4.496-10.039-10.039-10.039z"
+                        />
+                        <path
+                          d="M459.745 243.586l-90.353-100.392c-3.711-4.127-10.059-4.451-14.176-.745-4.123 3.706-4.456 10.4-.745 14.517l75.272 83.976H201.304a10.036 10.036 0 00-10.039 10.039 10.036 10.036 0 0010.039 10.039h226.745l-73.216 72.877c-3.922 3.922-3.922 10.103 0 14.025 1.961 1.961 4.529 2.858 7.098 2.858s5.137-1.022 7.098-2.983l90.353-90.375c3.775-3.775 3.937-9.866.363-13.836z"
+                        />
+                      </svg>
+                    </div>
+                    <div class="dropdown__menu-text">
+                      {{ dictionary.logout }}
+                    </div>
+                  </a>
+                </li>
+                <router-link to="/login" class="styled-link"
+                  ><li
+                    v-if="!isLoggedIn"
+                    class="dropdown__menu-item"
+                    v-on:click="show = false"
+                  >
+                    <a href="#" class="dropdown__menu-link" title="About">
+                      <div class="dropdown__menu-svg">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 512 512"
+                        >
+                          <defs />
+                          <path
+                            d="M327.287 246.852l-74.931-76.595c-4.941-5.06-13.039-5.146-18.099-.205-5.06 4.941-5.146 13.056-.205 18.099l53.854 55.057H12.8C5.734 243.2 0 248.934 0 256s5.734 12.8 12.8 12.8h275.098l-53.845 55.057c-4.941 5.043-4.855 13.158.205 18.099 5.06 4.941 13.158 4.855 18.099-.205l75.128-76.8c4.939-5.043 4.854-13.158-.198-18.099z"
+                          />
+                          <path
+                            d="M499.2 0H166.4c-7.066 0-12.8 5.734-12.8 12.8V192h25.6V25.6h307.2v460.8H179.2V320h-25.6v179.2c0 7.066 5.734 12.8 12.8 12.8h332.8c7.066 0 12.8-5.734 12.8-12.8V12.8C512 5.734 506.266 0 499.2 0z"
+                          />
+                        </svg>
+                      </div>
+                      <div class="dropdown__menu-text">
+                        {{ dictionary.login }}
                       </div>
                     </a>
                   </li></router-link
@@ -201,7 +261,15 @@ export default {
       show: false,
     };
   },
-  props: ["language"],
+  props: ["language", "isLoggedIn", "refreshApp"],
+  methods: {
+    logout: function () {
+      this.show = false;
+      window.localStorage.removeItem("user");
+      this.$props.refreshApp();
+      this.$router.push("/login");
+    },
+  },
   computed: {
     dictionary: function () {
       return this.$props.language === "english" ? engLang : rsLang;
@@ -212,11 +280,14 @@ export default {
     isEnglish: function () {
       return this.$props.language === "english";
     },
-    breadcrumb: function() {
-      const breadcrumbDict = this.$props.language === "english" ? breadcrumbEnglish : breadcrumbSerbian
+    breadcrumb: function () {
+      const breadcrumbDict =
+        this.$props.language === "english"
+          ? breadcrumbEnglish
+          : breadcrumbSerbian;
 
-      return breadcrumbDict[this.$route.fullPath] ?? this.$route.fullPath
-    }
+      return breadcrumbDict[this.$route.fullPath] ?? this.$route.fullPath;
+    },
   },
 };
 </script>
@@ -266,7 +337,6 @@ export default {
   top: 100%;
   right: 0;
   z-index: 10;
-  height: 26rem;
   min-width: 300px;
   overflow-y: auto;
   padding: 2rem 0rem 2rem 0rem;

@@ -7,5 +7,7 @@
     "language": "Language",
     "header": "Coolinary Recipes",
     "close": "Close",
-    "navigationMenu": "Navigation Menu"
+    "navigationMenu": "Navigation Menu",
+    "logout": "Log Out",
+    "login": "Log In"
 }

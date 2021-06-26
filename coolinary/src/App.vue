@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header v-on:switchLanguage="switchLanguage" :language="language" />
-    <router-view :language="language" />
+    <Header :refreshApp="refreshApp" :isLoggedIn="isLoggedIn" v-on:switchLanguage="switchLanguage" :language="language" />
+    <router-view :refreshApp="refreshApp" :language="language" />
     <Footer />
   </div>
 </template>
@@ -17,13 +17,20 @@ export default {
     return {
       show: false,
       language: "english",
+      isLoggedIn: false,
     };
   },
   components: { Header, Footer },
   methods: {
     switchLanguage(newLanguage) {
       this.language = newLanguage
+    },
+    refreshApp() {
+      this.isLoggedIn = !!window.localStorage.getItem('user')
     }
+  },
+  mounted() {
+    this.isLoggedIn = !!window.localStorage.getItem('user')
   }
 };
 </script>

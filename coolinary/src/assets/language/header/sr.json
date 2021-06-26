@@ -7,5 +7,7 @@
     "language": "Jezik",
     "header": "Kulinarski Recepti",
     "close": "Zatvori",
-    "navigationMenu": "Meni"
+    "navigationMenu": "Meni",
+    "logout": "Odjavite Se",
+    "login": "Prijavite Se"
 }
