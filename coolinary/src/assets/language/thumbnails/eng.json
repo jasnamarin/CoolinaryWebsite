@@ -2,21 +2,25 @@
     {
       "id": 0,
       "title": "Appetizers",
+      "breadcrumb" : "appetizers",
       "filename": "appetizer-thumbnail.jpg"
     },
     {
       "id": 1,
       "title": "Main Dishes",
+      "breadcrumb" : "main-dishes",
       "filename": "main-dish-thumbnail.jpg"
     },
     {
       "id": 2,
       "title": "Snacks",
+      "breadcrumb" : "snacks",
       "filename": "snack-thumbnail.jpg"
     },
     {
       "id": 3,
       "title": "Desserts",
+      "breadcrumb" : "desserts",
       "filename": "dessert-thumbnail.jpg"
     }
 ]
