@@ -224,9 +224,13 @@ export default {
 <style lang="scss" scoped>
 .header {
   display: flex;
-  padding: 2rem 5rem 2rem 5rem;
+  padding: 1rem 3rem 1rem 3rem;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  background: #fff;
+  width: 100%;
 
   h2 {
     width: 420px;
@@ -282,8 +286,8 @@ export default {
     margin-bottom: 0.2rem;
     border-radius: 0 50px 50px 0;
     &:hover {
-      color: #17bf63;
-      fill: #17bf63;
+      color: var(--color-green);
+      fill: var(--color-green);
       background-color: rgba(79, 192, 141, 0.1);
     }
   }

@@ -1,0 +1,11 @@
+{
+    "errorInvalidUsername": "You have to enter a valid username.",
+    "errorInvalidPassword": "You have to enter a valid password.",
+    "errorInvalidEmail": "You have to enter a valid email.",
+    "errorPasswordMismatch": "Password confirmation has to match password.",
+    "errorInvalidFirstName": "You have to enter a valid first name.",
+    "errorInvalidLastName": "You have to enter a valid last name.",
+    "errorInvalidCredentials": "You have provided invalid credentials.",
+    "errorEmailTaken": "That email is already taken.",
+    "errorUsernameTaken": "That username is already taken."
+}

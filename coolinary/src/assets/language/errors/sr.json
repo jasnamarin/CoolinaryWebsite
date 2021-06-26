@@ -1,0 +1,11 @@
+{
+    "errorInvalidUsername": "Morate uneti validno korisničko ime.",
+    "errorInvalidPassword": "Morate uneti validnu lozinku.",
+    "errorInvalidEmail": "Morate uneti validnu elektronsku poštu.",
+    "errorPasswordMismatch": "Potvrda lozinke mora biti identična kao lozinka.",
+    "errorInvalidFirstName": "Morate uneti ime.",
+    "errorInvalidLastName": "Morate uneti prezime.",
+    "errorInvalidCredentials": "Uneli ste pogrešne kredencijale.",
+    "errorEmailTaken": "Elektronska pošta je zauzeta.",
+    "errorUsernameTaken": "Korisničko ime je zauzeto.."
+}
