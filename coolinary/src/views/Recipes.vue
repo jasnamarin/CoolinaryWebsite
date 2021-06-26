@@ -20,7 +20,7 @@ export default {
   props: ["language"],
   methods: {
     thumbUrl(filename) {
-      return require(`../assets/pictures/thumbnails/${filename}`);
+      return require(`../assets/images/thumbnails/${filename}`);
     },
   },computed: {
     dictionary: function () {
@@ -38,24 +38,21 @@ export default {
     grid-gap: 1rem;
     max-width: 100rem;
     margin: 5rem auto;
-    padding: 0 5rem;
+    padding: 7rem 5rem;
 
     $small: 900px;
     $medium: 1600px;
 
     @media screen and (max-width: $small) {
       grid-template-columns: 1fr;
-      margin: 1rem 1rem 5rem 1rem;
+      margin: 1rem auto;
     }
 
     @media screen and (min-width: $small) and (max-width: $medium) {
       grid-template-columns: 1fr 1fr;
-      margin: 1rem 1rem 5rem 1rem;
+      margin: 1rem auto;
     }
   }
-
-  
-  
 
   .gallery {
     position: relative;
