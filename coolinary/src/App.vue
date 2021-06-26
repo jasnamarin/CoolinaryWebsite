@@ -55,7 +55,7 @@ body {
   font-size: 1rem;
   -webkit-text-size-adjust: 100%;
   font-family: var(--font-primary);
-  overflow: hidden;
+  overflow: visible;
   padding: 0;
   margin: 0;
 }
