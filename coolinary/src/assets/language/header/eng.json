@@ -2,10 +2,12 @@
     "home": "Home",
     "recipes": "Recipes",
     "shareRecipe": "Share Recipe",
-    "profile": "Profile",
+    "profile": "My Account",
     "about": "About",
     "language": "Language",
     "header": "Coolinary Recipes",
     "close": "Close",
-    "navigationMenu": "Navigation Menu"
+    "navigationMenu": "Navigation Menu",
+    "logout": "Log Out",
+    "login": "Log In"
 }
