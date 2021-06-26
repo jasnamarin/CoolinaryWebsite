@@ -303,7 +303,6 @@ export default {
   top: 0;
   background: #fff;
   width: 100%;
-  z-index: 2;
 
   h2 {
     width: 420px;

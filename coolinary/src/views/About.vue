@@ -2,26 +2,48 @@
   <div class="about">
     <div class="about__bannerContainer">
       <div class="about__banner">
-        <h1>About Us</h1>
+        <h1>{{ dictionary.header }}</h1>
       </div>
     </div>
     <div class="about__mainSection">
-      <h2>Coolinary Recipes</h2>
+      <h2>{{ dictionary.semiHeader }}</h2>
       <hr />
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptates reiciendis, a ad mollitia rerum, impedit exercitationem harum illum iure quidem cum! Ducimus, dignissimos iusto animi quas corporis molestias debitis.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptates reiciendis, a ad mollitia rerum, impedit exercitationem harum illum iure quidem cum! Ducimus, dignissimos iusto animi quas corporis molestias debitis.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptates reiciendis, a ad mollitia rerum, impedit exercitationem harum illum iure quidem cum! Ducimus, dignissimos iusto animi quas corporis molestias debitis.</p>
+      <p>
+        {{ dictionary.p1 }}
+      </p>
+      <p>
+        {{ dictionary.p2 }}
+      </p>
+      <p>
+        {{ dictionary.p3 }}
+      </p>
     </div>
     <div class="about__awards">
-      <div class="about__awards--header"><strong>Coolinary Recipes has been awarded with some of the most prestigious awards:</strong></div>
+      <div class="about__awards--header">
+        <strong
+          >{{ dictionary.awardsHeader}}:</strong
+        >
+      </div>
       <div class="about__awards--award">
         <img src="@/assets/images/web_avards_logo.png" />
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptates reiciendis, a ad mollitia rerum, impedit exercitationem harum illum iure quidem cum! Ducimus, dignissimos iusto animi quas corporis molestias debitis.</p>
-
+        <p>
+          {{ dictionary.webAwards }}
+        </p>
       </div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptates reiciendis, a ad mollitia rerum, impedit exercitationem harum illum iure quidem cum! Ducimus, dignissimos iusto animi quas corporis molestias debitis.</p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptates reiciendis, a ad mollitia rerum, impedit exercitationem harum illum iure quidem cum! Ducimus, dignissimos iusto animi quas corporis molestias debitis.</p>
+      <div class="about__awards--award">
+        <img src="@/assets/images/css_design_awards_logo.png" />
+        <p>
+          {{ dictionary.cssDesignAwards }}
+        </p>
+      </div>
+      <div class="about__awards--award">
+        <img src="@/assets/images/awwwards_logo.svg" />
+        <p>{{ dictionary.awwwards }}</p>
+      </div>
     </div>
+    <p class="left">
+      {{ dictionary.address }}
+    </p>
     <div class="map-outerContainer">
       <Map />
     </div>
@@ -29,14 +51,23 @@
 </template>
 
 <script>
-import Map from '@/components/Map.vue'
+import Map from "@/components/Map.vue";
+
+import englishDict from '@/assets/language/about-us/eng.json'
+import serbianDict from '@/assets/language/about-us/sr.json'
 
 export default {
-  name: 'About',
+  name: "About",
+  props: ["language"],
   components: {
     Map,
+  },
+  computed: {
+    dictionary: function () {
+      return this.$props.language === "english" ? englishDict : serbianDict;
+    },
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -75,12 +106,12 @@ export default {
       img {
         margin-right: 1rem;
         width: 150px;
-        height: 100px;
       }
     }
   }
 
-  &__mainSection, &__awards {
+  &__mainSection,
+  &__awards {
     padding: 0 20%;
     text-align: left;
 
@@ -107,13 +138,24 @@ export default {
   padding: 0 20%;
 }
 
+.left {
+  text-align: left;
+  padding: 0 20%;
+}
+
 @media only screen and (max-width: 1024px) {
   .about {
     .map-outerContainer {
       padding: 0 5%;
     }
 
-    &__mainSection, &__awards { 
+    &__mainSection,
+    &__awards {
+      padding: 0 5%;
+    }
+
+    .left {
+      text-align: left;
       padding: 0 5%;
     }
   }
