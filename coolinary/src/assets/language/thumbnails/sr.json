@@ -1,0 +1,22 @@
+[
+    {
+      "id": 0,
+      "title": "Predjela",
+      "filename": "appetizer-thumbnail.jpg"
+    },
+    {
+      "id": 1,
+      "title": "Glavna jela",
+      "filename": "main-dish-thumbnail.jpg"
+    },
+    {
+      "id": 2,
+      "title": "Užine",
+      "filename": "snack-thumbnail.jpg"
+    },
+    {
+      "id": 3,
+      "title": "Deserti",
+      "filename": "dessert-thumbnail.jpg"
+    }
+]
