@@ -1,0 +1,12 @@
+{
+    "header": "Registracija",
+    "username": "Korisničko ime",
+    "firstName": "Ime",
+    "lastName": "Prezime",
+    "email": "Elektronska pošta",
+    "password": "Lozinka",
+    "passwordConfirmation": "Potvrda lozinke",
+    "signIn": "Registrujte se",
+    "hasAccount": "Već imate nalog? Ulogujte se",
+    "here": "ovde"
+}
