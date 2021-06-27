@@ -1,6 +1,10 @@
 {
     "/": "Početna",
     "/recipes": "Recepti",
+    "/recipes/appetizers": "Recepti > Predjela",
+    "/recipes/main-dishes": "Recepti > Glavna Jela",
+    "/recipes/desserts": "Recepti > Deserti",
+    "/recipes/snacks": "Recepti > Užine",
     "/login": "Prijava na sistem",
     "/register": "Registracija",
     "/profile": "Moj Nalog",

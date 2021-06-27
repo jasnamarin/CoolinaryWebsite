@@ -1,0 +1,111 @@
+{
+    "sort" : "Sort by",
+    "rating" : "rating",
+    "level" : "level of difficulty",
+    "search" : "Search",
+    "appetizers" :
+    [
+        {
+            "name": "",
+            "instructions" : "",
+            "time" : "",
+            "level" : "",
+            "video" : [],
+            "photo" : [],
+            "rating" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
+        },
+
+        {
+            "name": "",
+            "instructions" : "",
+            "time" : "",
+            "level" : "",
+            "video" : [],
+            "photo" : [],
+            "rating" : "",
+            "comments" : []
+        }
+    ],
+
+    "main-dishes" :
+    [
+        {
+            "name": "",
+            "instructions" : "",
+            "time" : "",
+            "level" : "",
+            "video" : [],
+            "photo" : [],
+            "rating" : "",
+            "comments" : []
+        },
+
+        {
+            "name": "",
+            "instructions" : "",
+            "time" : "",
+            "level" : "",
+            "video" : [],
+            "photo" : [],
+            "rating" : "",
+            "comments" : []
+        }
+    ],
+
+    "desserts" :
+    [
+        {
+            "name": "",
+            "instructions" : "",
+            "time" : "",
+            "level" : "",
+            "video" : [],
+            "photo" : [],
+            "rating" : "",
+            "comments" : []
+        },
+
+        {
+            "name": "",
+            "instructions" : "",
+            "time" : "",
+            "level" : "",
+            "video" : [],
+            "photo" : [],
+            "rating" : "",
+            "comments" : []
+        }
+    ],
+
+    "snacks" :
+    [
+        {
+            "name": "",
+            "instructions" : "",
+            "time" : "",
+            "level" : "",
+            "video" : [],
+            "photo" : [],
+            "rating" : "",
+            "comments" : []
+        },
+
+        {
+            "name": "",
+            "instructions" : "",
+            "time" : "",
+            "level" : "",
+            "video" : [],
+            "photo" : [],
+            "rating" : "",
+            "comments" : []
+        }
+    ]
+}

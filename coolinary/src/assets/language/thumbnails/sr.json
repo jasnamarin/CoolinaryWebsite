@@ -2,21 +2,25 @@
     {
       "id": 0,
       "title": "Predjela",
+      "breadcrumb" : "appetizers",
       "filename": "appetizer-thumbnail.jpg"
     },
     {
       "id": 1,
       "title": "Glavna jela",
+      "breadcrumb" : "main-dishes",
       "filename": "main-dish-thumbnail.jpg"
     },
     {
       "id": 2,
       "title": "Užine",
+      "breadcrumb" : "snacks",
       "filename": "snack-thumbnail.jpg"
     },
     {
       "id": 3,
       "title": "Deserti",
+      "breadcrumb" : "desserts",
       "filename": "dessert-thumbnail.jpg"
     }
 ]

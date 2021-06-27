@@ -1,6 +1,10 @@
 {
     "/": "Home",
     "/recipes": "Recipes",
+    "/recipes/appetizers": "Recipes > Appetizers",
+    "/recipes/main-dishes": "Recipes > Main Dishes",
+    "/recipes/desserts": "Recipes > Desserts",
+    "/recipes/snacks": "Recipes > Snacks",
     "/login": "Login",
     "/register": "Register",
     "/profile": "My Account",
