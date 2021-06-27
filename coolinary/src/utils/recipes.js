@@ -37,8 +37,10 @@ export const saveRecipeForType = (data) => {
     const userId = JSON.parse(window.localStorage.getItem('user')).id
 
     const [serbianRecipes, englishRecipes] = getRecipes()
+
+	const id = (serbianRecipes.slice(-1)[0].id ?? 0) + 1
     
-    const recipe = { ...data, userId, rating: 0, ratings: [], comments: [] }
+    const recipe = { ...data, userId, rating: 0, ratings: [], comments: [], id }
 
     const updatedSerbianRecipes = [...serbianRecipes, recipe]
     const updatedEnglishRecipes = [...englishRecipes, recipe]
