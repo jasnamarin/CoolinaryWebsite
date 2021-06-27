@@ -15,7 +15,7 @@
         </p>
         <p class="rating">
           <star-rating
-            :read-only="!isLoggedIn"
+            read-only="true"
             :show-rating="false"
             v-model:rating="_rating"
           ></star-rating>
@@ -124,7 +124,8 @@ $shadow: rgba(0, 0, 0, 0.2);
 .post-image {
   @include transition(opacity 0.3s ease);
   display: block;
-  width: 100%;
+  max-height: 240px;
+  width: 320px;
   object-fit: cover;
 }
 
