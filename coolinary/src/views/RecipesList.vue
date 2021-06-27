@@ -2,7 +2,6 @@
 <template>
   <div class="list">
     <div class="list__container">
-
       <div v-on:search.prevent="onSearch" class="list__filters">
         <div class="list__item">
           <label for="standard-select">{{ dictionary.sort }}</label>
@@ -20,25 +19,30 @@
       </div>
 
       <div class="recipe-card">
-     <RecipeCard/>
-     </div>
-     <div class="recipe-card">
-     <RecipeCard name="A Recipe" thumbnail='../../assets/images/thumbnails/dessert-thumbnail.jpg' category="dessert" level=3 time="30min"/>
-     </div>
-     <div class="recipe-card">
-     <RecipeCard/>
-     </div>
-
+        <RecipeCard rating="3" />
+      </div>
+      <div class="recipe-card">
+        <RecipeCard
+          name="A Recipe"
+          thumbnail="../../assets/images/thumbnails/dessert-thumbnail.jpg"
+          category="dessert"
+          level="3"
+          time="30min"
+        />
+      </div>
+      <div class="recipe-card">
+        <RecipeCard />
+      </div>
     </div>
   </div>
 </template>
 
 
 <script>
-import { getRecipesForLanguageAndType } from '@/utils'
+import { getRecipesForLanguageAndType } from "@/utils";
 
-import rsLang from '@/assets/language/recipes/sr.json';
-import engLang from '@/assets/language/recipes/eng.json';
+import rsLang from "@/assets/language/recipes/sr.json";
+import engLang from "@/assets/language/recipes/eng.json";
 
 import Button from "@/components/shared/Button.vue";
 import Input from "@/components/shared/Input.vue";
@@ -50,7 +54,7 @@ export default {
   data() {
     return {
       recipes: [],
-    }
+    };
   },
   components: {
     Button,
@@ -64,13 +68,13 @@ export default {
   },
   mounted() {
     const type = this.$route.fullPath.split("/").slice(-1)[0];
-    this.recipes = getRecipesForLanguageAndType(this.$props.language, type)
+    this.recipes = getRecipesForLanguageAndType(this.$props.language, type);
   },
   watch: {
-    language: function(language) {
+    language: function (language) {
       const type = this.$route.fullPath.split("/").slice(-1)[0];
-      this.recipes = getRecipesForLanguageAndType(language, type)
-    }
+      this.recipes = getRecipesForLanguageAndType(language, type);
+    },
   },
   methods: {
     onSearch: function () {
@@ -83,9 +87,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
 .recipe-card {
-    margin: 2rem auto;
+  margin: 2rem auto;
 }
 
 select {
@@ -132,12 +135,12 @@ select::-ms-expand {
     }
   }
 
-    &__container {
-        align-items: center;
-        display: flex;
-        flex-direction: column;
-        width:100%;
-    }
+  &__container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
   &__filters {
     display: flex;

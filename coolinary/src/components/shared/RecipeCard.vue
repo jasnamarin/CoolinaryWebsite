@@ -1,31 +1,56 @@
 <template>
   <div class="card">
     <article class="blog-card">
-        <img class="post-image" src='../../assets/images/thumbnails/dessert-thumbnail.jpg' />
-        <div class="article-details">
+      <img
+        class="post-image"
+        src="../../assets/images/thumbnails/dessert-thumbnail.jpg"
+      />
+      <div class="article-details">
         <h4 class="post-category">{{ category }}</h4>
         <h3 class="post-title">{{ name }}</h3>
-        <p class="post-description">Difficulty: {{difficulty}} / 5 &nbsp; &nbsp; &nbsp; &nbsp;  Estimated time: {{time}}</p>
-        <p class="rating"><StarRating/></p>
-        </div>
+        <p class="post-description">
+          Difficulty: {{ difficulty }} / 5 &nbsp; &nbsp; &nbsp; &nbsp; Estimated
+          time: {{ time }}
+        </p>
+        <p class="rating">
+          <star-rating :read-only="!isLoggedIn" :show-rating="false" v-model:rating="_rating"></star-rating>
+        </p>
+      </div>
     </article>
   </div>
 </template>
 
 <script>
-import StarRating from "@/components/shared/StarRating.vue"
+import StarRating from "vue-star-rating";
 
 export default {
-  name: 'RecipeCard',
-  props: ['name', 'thumbnail', 'category', 'level', 'time', 'rating'],
+  name: "RecipeCard",
+  data() {
+    return {
+      isLoggedIn: false,
+    }
+  },
+  mounted() {
+    this.isLoggedIn = !!window.localStorage.getItem('user')
+  },
+  props: ["name", "thumbnail", "category", "level", "time", "rating"],
   components: {
-      StarRating
-  }
-}
+    StarRating,
+  },
+  computed: {
+    _rating: {
+      get: function () {
+        return this.$props.rating;
+      },
+      set: function (newValue) {
+        this.$emit("update:rating", newValue);
+      },
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
 $bg: #eedfcc;
 $text: #777;
 $black: #121212;
@@ -40,22 +65,21 @@ $shadow: rgba(0, 0, 0, 0.2);
 
 * {
   box-sizing: border-box;
-  &::before, &::after {
+  &::before,
+  &::after {
     box-sizing: border-box;
   }
 }
 
-
-
 .blog-card {
-    max-width: 60rem;
-    display: flex;
-    flex-direction: row;
-    background: $white;
-    box-shadow: 0 0.1875rem 1.5rem $shadow;
-    border-radius: 0.375rem;
-    overflow: hidden;
-    text-align: left;
+  max-width: 60rem;
+  display: flex;
+  flex-direction: row;
+  background: $white;
+  box-shadow: 0 0.1875rem 1.5rem $shadow;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  text-align: left;
 }
 
 .card-link {
@@ -77,7 +101,7 @@ $shadow: rgba(0, 0, 0, 0.2);
   @include transition(opacity 0.3s ease);
   display: block;
   width: 100%;
-	object-fit: cover;
+  object-fit: cover;
 }
 
 .article-details {
@@ -118,7 +142,7 @@ $shadow: rgba(0, 0, 0, 0.2);
     width: 18rem;
     height: 27.25rem;
   }
-  
+
   .blog-card {
     flex-wrap: wrap;
   }
@@ -131,7 +155,7 @@ $shadow: rgba(0, 0, 0, 0.2);
     grid-gap: 0.625rem;
     grid-template-areas: ". main main ." ". main main .";
   }
-  
+
   #container {
     grid-area: main;
     align-self: center;
@@ -141,13 +165,13 @@ $shadow: rgba(0, 0, 0, 0.2);
   .post-image {
     height: 100%;
   }
-  
+
   .blog-card {
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-template-rows: 1fr;
   }
-  
+
   @media (max-width: 40rem) {
     .blog-card {
       grid-template-columns: auto;
@@ -155,5 +179,4 @@ $shadow: rgba(0, 0, 0, 0.2);
     }
   }
 }
-
 </style>
