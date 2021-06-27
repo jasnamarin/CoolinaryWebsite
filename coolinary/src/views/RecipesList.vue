@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { getRecipesForLanguageAndType } from '@/utils'
+
 import rsLang from '@/assets/language/recipes/sr.json';
 import engLang from '@/assets/language/recipes/eng.json';
 
@@ -31,15 +33,29 @@ import Input from "@/components/shared/Input.vue";
 export default {
   name: 'RecipesList',
   props: ["language"],
+  data() {
+    return {
+      recipes: [],
+    }
+  },
   components: {
       Button,
       Input
   },
   computed: {
     dictionary: function () {
-      console.log(this.$props.language)
       return this.$props.language === "english" ? engLang : rsLang;
     },
+  },
+  mounted() {
+    const type = this.$route.fullPath.split("/").slice(-1)[0];
+    this.recipes = getRecipesForLanguageAndType(this.$props.language, type)
+  },
+  watch: {
+    language: function(language) {
+      const type = this.$route.fullPath.split("/").slice(-1)[0];
+      this.recipes = getRecipesForLanguageAndType(language, type)
+    }
   },
   methods: {
     onSearch: function () {

@@ -131,15 +131,18 @@ export default {
         return;
       }
 
+      const lastUserId = (users.slice(-1)[0].id ?? 0) + 1;
+
       const user = {
         username,
         password,
         email,
         firstName,
         lastName,
+        id: lastUserId,
       };
 
-      const newUsers = [...users, user]
+      const newUsers = [...users, user];
 
       window.localStorage.setItem("user", JSON.stringify(user));
       window.localStorage.setItem("users", JSON.stringify(newUsers));
