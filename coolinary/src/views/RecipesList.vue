@@ -27,7 +27,7 @@
           <RecipeCard
             :id="recipe.id"
             :name="recipe.name"
-            :thumbnail="recipe.thumbnail"
+            :thumbnail="images[recipe.thumbnail]"
             :category="recipe.category"
             :level="recipe.level"
             :time="recipe.time"
@@ -52,7 +52,7 @@ import RecipeCard from "@/components/shared/RecipeCard.vue";
 
 export default {
   name: "RecipesList",
-  props: ["language"],
+  props: ["language", "images"],
   data() {
     return {
       search: "",

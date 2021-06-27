@@ -1,6 +1,8 @@
 import engRecipes from '../assets/data/eng_recipes.js'
 import srRecipes from '../assets/data/sr_recipes.js'
 
+import { defaultThumbnails } from '../assets/data/defaults'
+
 export const getRecipes = () => {
 	if (!window.localStorage.getItem('engRecipes')) {
 		window.localStorage.setItem(
@@ -40,7 +42,9 @@ export const saveRecipeForType = (data) => {
 
 	const id = (serbianRecipes.slice(-1)[0].id ?? 0) + 1
     
-    const recipe = { ...data, userId, rating: 0, ratings: [], comments: [], id }
+	const thumbnail = data.photo?.[0] ?? defaultThumbnails[data.type]
+
+    const recipe = { ...data, userId, rating: 0, ratings: [], comments: [], id, thumbnail }
 
     const updatedSerbianRecipes = [...serbianRecipes, recipe]
     const updatedEnglishRecipes = [...englishRecipes, recipe]
