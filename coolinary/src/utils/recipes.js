@@ -47,7 +47,7 @@ export const saveRecipeForType = (data, payloadType) => {
 
     const [serbianRecipes, englishRecipes] = getRecipes()
     
-    const recipe = { ...data, userId }
+    const recipe = { ...data, userId, rating: 0, ratings: [], comments: [] }
 
     const updatedSerbianRecipes = getUpdatedRecipes(serbianRecipes, recipe, type)
     const updatedEnglishRecipes = getUpdatedRecipes(englishRecipes, recipe, type)

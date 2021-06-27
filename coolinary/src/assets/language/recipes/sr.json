@@ -12,8 +12,15 @@
             "level" : "",
             "video" : [],
             "photo" : [],
-            "rating" : "",
-            "comments" : []
+            "rating" : 3,
+            "ratings" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
         },
 
         {
@@ -23,8 +30,15 @@
             "level" : "",
             "video" : [],
             "photo" : [],
-            "rating" : "",
-            "comments" : []
+            "rating" : 3,
+            "ratings" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
         }
     ],
 
@@ -37,8 +51,15 @@
             "level" : "",
             "video" : [],
             "photo" : [],
-            "rating" : "",
-            "comments" : []
+            "rating" : 2,
+            "ratings" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
         },
 
         {
@@ -48,8 +69,15 @@
             "level" : "",
             "video" : [],
             "photo" : [],
-            "rating" : "",
-            "comments" : []
+            "rating" : 2,
+            "ratings" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
         }
     ],
 
@@ -62,8 +90,15 @@
             "level" : "",
             "video" : [],
             "photo" : [],
-            "rating" : "",
-            "comments" : []
+            "rating" : 2,
+            "ratings" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
         },
 
         {
@@ -73,8 +108,15 @@
             "level" : "",
             "video" : [],
             "photo" : [],
-            "rating" : "",
-            "comments" : []
+            "rating" : 3,
+            "ratings" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
         }
     ],
 
@@ -87,8 +129,15 @@
             "level" : "",
             "video" : [],
             "photo" : [],
-            "rating" : "",
-            "comments" : []
+            "rating" : 3,
+            "ratings" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
         },
 
         {
@@ -98,8 +147,15 @@
             "level" : "",
             "video" : [],
             "photo" : [],
-            "rating" : "",
-            "comments" : []
+            "rating" : 3,
+            "ratings" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
         }
     ]
 }
