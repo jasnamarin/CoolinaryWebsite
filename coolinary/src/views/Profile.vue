@@ -115,4 +115,10 @@ a {
   color: var(--color-aqua);
   text-decoration: underline;
 }
+
+@media only screen and (max-width: 1024px) {
+.profile {
+  padding: 0 5%;
+}
+}
 </style>
