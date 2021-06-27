@@ -178,7 +178,9 @@ select::-ms-expand {
     position: fixed;
     top: 4rem;
     background: #fff;
-    width: 100%;
+    width: 100vw;
+    z-index: 1;
+    box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);
   }
 
   &__item {
