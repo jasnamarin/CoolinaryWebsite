@@ -62,3 +62,34 @@ export const saveRecipeForType = (data) => {
 		JSON.stringify(updatedEnglishRecipes)
 	)
 }
+
+export const getMyRecipesForLanguage = (language) => {
+	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+	console.log(userId)
+	return getRecipesForLanguage(language).filter(
+		(recipe) => recipe.userId === userId
+	)
+}
+
+export const getMyCommentsForLanguage = (language) => {
+	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+	return getRecipesForLanguage(language).reduce((acc, recipe) => {
+		return [
+			...acc,
+			...(recipe?.comments?.filter(
+				(comment) => comment.userId === userId
+			) ?? []),
+		]
+	}, [])
+}
+
+export const getMyRatingsForLanguage = (language) => {
+	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+	return getRecipesForLanguage(language).reduce((acc, recipe) => {
+		return [
+			...acc,
+			...(recipe?.ratings?.filter((rating) => rating.userId === userId) ??
+				[]),
+		]
+	}, [])
+}

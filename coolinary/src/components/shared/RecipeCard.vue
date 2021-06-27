@@ -15,7 +15,7 @@
         </p>
         <p class="rating">
           <star-rating
-            read-only="true"
+            :read-only="true"
             :show-rating="false"
             v-model:rating="_rating"
           ></star-rating>
@@ -125,6 +125,7 @@ $shadow: rgba(0, 0, 0, 0.2);
   @include transition(opacity 0.3s ease);
   display: block;
   max-height: 240px;
+  min-height: 240px;
   width: 320px;
   object-fit: cover;
 }
