@@ -25,8 +25,9 @@
           class="recipe-card"
         >
           <RecipeCard
+            :id="recipe.id"
             :name="recipe.name"
-            thumbnail="../../assets/images/thumbnails/dessert-thumbnail.jpg"
+            :thumbnail="recipe.thumbnail"
             :category="recipe.category"
             :level="recipe.level"
             :time="recipe.time"
@@ -123,6 +124,11 @@ select {
   background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
   align-items: center;
   outline: none;
+}
+
+a {
+  text-decoration: none;
+  color: var(--color-default);
 }
 
 .recipes {

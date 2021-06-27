@@ -1,9 +1,10 @@
 <template>
-  <div class="card">
+  <router-link :to="'/recipes/recipe/' + id">
+    <div class="card">
     <article class="blog-card">
       <img
         class="post-image"
-        src="../../assets/images/thumbnails/dessert-thumbnail.jpg"
+        :src="_src"
       />
       <div class="article-details">
         <h4 class="post-category">{{ category }}</h4>
@@ -22,6 +23,7 @@
       </div>
     </article>
   </div>
+  </router-link>
 </template>
 
 <script>
@@ -41,6 +43,7 @@ export default {
     this.isLoggedIn = !!window.localStorage.getItem("user");
   },
   props: [
+    "id",
     "name",
     "thumbnail",
     "category",
@@ -53,6 +56,9 @@ export default {
     StarRating,
   },
   computed: {
+    _src: function() {
+      return `data:image/png;base64, ${this.thumbnail}`;
+    },
     _rating: {
       get: function () {
         return this.$props.rating;
