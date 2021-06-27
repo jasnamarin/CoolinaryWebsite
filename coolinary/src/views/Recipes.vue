@@ -55,17 +55,24 @@ export default {
 
   .gallery {
     position: relative;
-  }
 
-  .gallery img {
-    width: 100%;
-    height: 30vw;
-    object-fit: cover;
-    border-radius: 0.75rem;
+    img {
+      width: 100%;
+      height: 30vw;
+      object-fit: cover;
+      border-radius: 0.75rem;
+      transition: all 0.2s;
+
+      &:hover {
+        transition: all 0.2s;
+        box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);;
+      }
+    }
   }
 
   .centered {
     position: absolute;
+    padding: 8px;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
