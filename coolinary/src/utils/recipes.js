@@ -1,20 +1,18 @@
-import engRecipes from '../assets/language/recipes/eng.json'
-import srRecipes from '../assets/language/recipes/sr.json'
+import engRecipes from '../assets/data/eng_recipes.js'
+import srRecipes from '../assets/data/sr_recipes.js'
 
 export const getRecipes = () => {
 	if (!window.localStorage.getItem('engRecipes')) {
-		const { mainDishes, appetizers, desserts, snacks } = engRecipes
 		window.localStorage.setItem(
 			'engRecipes',
-			JSON.stringify({ mainDishes, appetizers, desserts, snacks })
+			JSON.stringify(engRecipes)
 		)
 	}
 
 	if (!window.localStorage.getItem('srRecipes')) {
-		const { mainDishes, appetizers, desserts, snacks } = srRecipes
 		window.localStorage.setItem(
 			'srRecipes',
-			JSON.stringify({ mainDishes, appetizers, desserts, snacks })
+			JSON.stringify(srRecipes)
 		)
 	}
 
@@ -30,27 +28,22 @@ export const getRecipesForLanguage = language => {
     return language === 'english' ? englishRecipes : serbianRecipes
 }
 
-export const getRecipesForLanguageAndType = (language, payloadType) => {
-    const type = payloadType === 'main-dishes' ? 'mainDishes' : payloadType
-    return getRecipesForLanguage(language)[type];
+export const getRecipesForLanguageAndType = (language, type) => {
+    return getRecipesForLanguage(language).filter(recipe => recipe.type === type);
 }
 
-const getUpdatedRecipes = (recipes, recipe, payloadType) => {
-    const type = payloadType === 'main-dishes' ? 'mainDishes' : payloadType
-    return { ...recipes, [type]: [...recipes.type, recipe ] }
-}
-
-// Accepts data object { name, instructions, time, level, video, photo } and type
-export const saveRecipeForType = (data, payloadType) => {
+// Accepts data object { name, instructions, time, level, video, photo, type }
+export const saveRecipeForType = (data) => {
     const userId = JSON.parse(window.localStorage.getItem('user')).id
-    const type = payloadType === 'main-dishes' ? 'mainDishes' : payloadType
 
     const [serbianRecipes, englishRecipes] = getRecipes()
-    
-    const recipe = { ...data, userId }
 
-    const updatedSerbianRecipes = getUpdatedRecipes(serbianRecipes, recipe, type)
-    const updatedEnglishRecipes = getUpdatedRecipes(englishRecipes, recipe, type)
+	const id = (serbianRecipes.slice(-1)[0].id ?? 0) + 1
+    
+    const recipe = { ...data, userId, rating: 0, ratings: [], comments: [], id }
+
+    const updatedSerbianRecipes = [...serbianRecipes, recipe]
+    const updatedEnglishRecipes = [...englishRecipes, recipe]
 
     window.localStorage.setItem('srRecipes', JSON.stringify(updatedSerbianRecipes))
     window.localStorage.setItem('engRecipes', JSON.stringify(updatedEnglishRecipes))

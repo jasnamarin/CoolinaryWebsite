@@ -2,11 +2,11 @@
 <template>
   <div class="list">
     <div class="list__container">
-      <div v-on:search.prevent="onSearch" class="list__filters">
+      <div class="list__filters">
         <div class="list__item">
           <label for="standard-select">{{ dictionary.sort }}</label>
           <div class="select">
-            <select id="standard-select">
+            <select v-model="sort" id="standard-select">
               <option value="rating">{{ dictionary.rating }}</option>
               <option value="level">{{ dictionary.level }}</option>
             </select>
@@ -14,29 +14,31 @@
         </div>
         <div class="list__item">
           <Input v-model="search" type="text" />
-          <Button type="submit" :text="dictionary.search" />
+          <Button @click="onSearch" type="submit" :text="dictionary.search" />
         </div>
       </div>
 
-      <div class="recipe-card">
-        <RecipeCard rating="3" />
-      </div>
-      <div class="recipe-card">
-        <RecipeCard
-          name="A Recipe"
-          thumbnail="../../assets/images/thumbnails/dessert-thumbnail.jpg"
-          category="dessert"
-          level="3"
-          time="30min"
-        />
-      </div>
-      <div class="recipe-card">
-        <RecipeCard />
+      <div class="recipes">
+        <div
+          :key="recipe.id"
+          v-for="recipe in filteredRecipes"
+          class="recipe-card"
+        >
+          <RecipeCard
+            :id="recipe.id"
+            :name="recipe.name"
+            :thumbnail="recipe.thumbnail"
+            :category="recipe.category"
+            :level="recipe.level"
+            :time="recipe.time"
+            :language="language"
+            :rating="recipe.rating"
+          />
+        </div>
       </div>
     </div>
   </div>
 </template>
-
 
 <script>
 import { getRecipesForLanguageAndType } from "@/utils";
@@ -53,7 +55,10 @@ export default {
   props: ["language"],
   data() {
     return {
+      search: "",
       recipes: [],
+      filteredRecipes: [],
+      sort: "rating",
     };
   },
   components: {
@@ -68,19 +73,35 @@ export default {
   },
   mounted() {
     const type = this.$route.fullPath.split("/").slice(-1)[0];
-    this.recipes = getRecipesForLanguageAndType(this.$props.language, type);
+    this.recipes = getRecipesForLanguageAndType(
+      this.$props.language,
+      type
+    ).sort(this.getSort());
+    this.filteredRecipes = this.recipes;
   },
   watch: {
     language: function (language) {
       const type = this.$route.fullPath.split("/").slice(-1)[0];
       this.recipes = getRecipesForLanguageAndType(language, type);
     },
+    sort: function () {
+      this.filteredRecipes = this.filteredRecipes.sort(this.getSort());
+    },
   },
   methods: {
+    getSort: function () {
+      if (this.sort === "level") {
+        return (a, b) => b.level - a.level;
+      }
+
+      return (a, b) => b.rating - a.rating;
+    },
     onSearch: function () {
-      console.log();
-      //search();
-      //this.$router.push("/recipe-details");
+      this.filteredRecipes = this.recipes
+        .filter((recipe) =>
+          recipe.name.toLowerCase().includes(this.search.toLowerCase())
+        )
+        .sort(this.getSort());
     },
   },
 };
@@ -93,7 +114,6 @@ export default {
 
 select {
   width: 100%;
-  min-width: 15ch;
   max-width: 30ch;
   border: none;
   padding: 0.25em 0.5em;
@@ -106,14 +126,22 @@ select {
   outline: none;
 }
 
+a {
+  text-decoration: none;
+  color: var(--color-default);
+}
+
+.recipes {
+  margin-top: 4rem;
+}
+
 select::-ms-expand {
   display: none;
 }
 
 .list {
-  margin: 5rem auto;
+  margin: 7rem auto 5rem auto;
   width: 100vw;
-  height: 100vh;
 
   Button {
     margin: 0rem 1rem 0rem 1rem;
@@ -148,6 +176,7 @@ select::-ms-expand {
     align-items: center;
     justify-content: space-between;
     position: fixed;
+    top: 4rem;
     background: #fff;
     width: 100%;
   }

@@ -166,7 +166,7 @@
                   class="dropdown__menu-item"
                   v-on:click="logout"
                 >
-                  <a href="#" class="dropdown__menu-link" title="About">
+                  <a href="#" class="dropdown__menu-link" title="Logout">
                     <div class="dropdown__menu-svg">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
