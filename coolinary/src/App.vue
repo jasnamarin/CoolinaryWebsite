@@ -1,12 +1,19 @@
 <template>
   <div id="app">
-    <Header :refreshApp="refreshApp" :isLoggedIn="isLoggedIn" v-on:switchLanguage="switchLanguage" :language="language" />
-    <router-view :refreshApp="refreshApp" :language="language" />
+    <Header
+      :refreshApp="refreshApp"
+      :isLoggedIn="isLoggedIn"
+      v-on:switchLanguage="switchLanguage"
+      :language="language"
+    />
+    <router-view :images="images" :refreshApp="refreshApp" :language="language" />
     <Footer />
   </div>
 </template>
 
 <script>
+import { defaultThumbnails } from "@/assets/data/defaults";
+
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 
@@ -18,20 +25,22 @@ export default {
       show: false,
       language: "english",
       isLoggedIn: false,
+      images: {},
     };
   },
   components: { Header, Footer },
   methods: {
     switchLanguage(newLanguage) {
-      this.language = newLanguage
+      this.language = newLanguage;
     },
     refreshApp() {
-      this.isLoggedIn = !!window.localStorage.getItem('user')
-    }
+      this.isLoggedIn = !!window.localStorage.getItem("user");
+    },
   },
   mounted() {
-    this.isLoggedIn = !!window.localStorage.getItem('user')
-  }
+    this.isLoggedIn = !!window.localStorage.getItem("user");
+    this.images = defaultThumbnails;
+  },
 };
 </script>
 
@@ -53,8 +62,8 @@ export default {
   --color-gray: #dadce0;
   --color-primary: #2c3e50;
   --color-green: #17bf63;
-  --color-red: #F4394D;
-  --color-blue: #0D82EB;
+  --color-red: #f4394d;
+  --color-blue: #0d82eb;
 }
 
 *,
