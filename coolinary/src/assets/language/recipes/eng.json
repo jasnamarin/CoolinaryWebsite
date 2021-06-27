@@ -1,4 +1,8 @@
 {
+    "sort" : "Sort by",
+    "rating" : "rating",
+    "level" : "level of difficulty",
+    "search" : "Search",
     "appetizers" :
     [
         {
@@ -8,8 +12,14 @@
             "level" : "",
             "video" : [],
             "photo" : [],
-            "rating" : "",
-            "comments" : []
+            "rating" : [{
+                "userId" : 0,
+                "rating" : 1
+            }],
+            "comments" : [{
+                "userId" : 0,
+                "comment" : ""
+            }]
         },
 
         {

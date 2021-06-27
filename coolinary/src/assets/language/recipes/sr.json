@@ -1,4 +1,8 @@
 {
+    "sort" : "Sortiraj po",
+    "rating" : "rejtingu",
+    "level" : "težini",
+    "search" : "Pretraži",
     "appetizers" :
     [
         {
