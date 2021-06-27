@@ -9,11 +9,15 @@
         <h4 class="post-category">{{ category }}</h4>
         <h3 class="post-title">{{ name }}</h3>
         <p class="post-description">
-          Difficulty: {{ difficulty }} / 5 &nbsp; &nbsp; &nbsp; &nbsp; Estimated
-          time: {{ time }}
+          {{ dictionary.difficulty }}: {{ level }} / 5 &nbsp; &nbsp; &nbsp;
+          &nbsp; {{ dictionary.estimatedTime }}: {{ time }}
         </p>
         <p class="rating">
-          <star-rating :read-only="!isLoggedIn" :show-rating="false" v-model:rating="_rating"></star-rating>
+          <star-rating
+            :read-only="!isLoggedIn"
+            :show-rating="false"
+            v-model:rating="_rating"
+          ></star-rating>
         </p>
       </div>
     </article>
@@ -21,6 +25,9 @@
 </template>
 
 <script>
+import engDictionary from "@/assets/language/recipe-card/eng.json";
+import srDictionary from "@/assets/language/recipe-card/sr.json";
+
 import StarRating from "vue-star-rating";
 
 export default {
@@ -28,12 +35,20 @@ export default {
   data() {
     return {
       isLoggedIn: false,
-    }
+    };
   },
   mounted() {
-    this.isLoggedIn = !!window.localStorage.getItem('user')
+    this.isLoggedIn = !!window.localStorage.getItem("user");
   },
-  props: ["name", "thumbnail", "category", "level", "time", "rating"],
+  props: [
+    "name",
+    "thumbnail",
+    "category",
+    "level",
+    "time",
+    "rating",
+    "language",
+  ],
   components: {
     StarRating,
   },
@@ -45,6 +60,9 @@ export default {
       set: function (newValue) {
         this.$emit("update:rating", newValue);
       },
+    },
+    dictionary: function () {
+      return this.$props.language === "english" ? engDictionary : srDictionary;
     },
   },
 };
@@ -177,6 +195,12 @@ $shadow: rgba(0, 0, 0, 0.2);
       grid-template-columns: auto;
       grid-template-rows: 12rem 1fr;
     }
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .card {
+    max-width: 736px;
   }
 }
 </style>

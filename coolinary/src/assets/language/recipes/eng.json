@@ -1,7 +1,7 @@
 {
     "sort" : "Sort by",
     "rating" : "rating",
-    "level" : "level of difficulty",
+    "level" : "difficulty",
     "search" : "Search",
     "appetizers" :
     [
@@ -38,24 +38,24 @@
     "mainDishes" :
     [
         {
-            "name": "Main1",
-            "instructions" : "",
-            "time" : "",
-            "level" : "",
+            "name": "Main Dish 1",
+            "instructions" : "Some long instruction to make this dish",
+            "time" : "30min",
+            "level" : "4",
             "video" : [],
             "photo" : [],
-            "rating" : "",
+            "rating" : 2,
             "comments" : []
         },
 
         {
-            "name": "Main2",
-            "instructions" : "",
-            "time" : "",
-            "level" : "",
+            "name": "Main Dish 2",
+            "instructions" : "Some long instruction to make this dish",
+            "time" : "20min",
+            "level" : "3",
             "video" : [],
             "photo" : [],
-            "rating" : "",
+            "rating" : 4,
             "comments" : []
         }
     ],
