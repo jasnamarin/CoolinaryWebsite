@@ -5,6 +5,7 @@
     <div class="recipes">
       <div :key="recipe.id" v-for="recipe in recipes" class="recipe-card">
         <RecipeCard
+          :onDelete="deleteRecipe"
           :id="recipe.id"
           :name="recipe.name"
           :thumbnail="images[recipe.thumbnail]"
@@ -56,6 +57,7 @@ import {
   getMyRecipesForLanguage,
   getMyCommentsForLanguage,
   getMyRatingsForLanguage,
+  deleteRecipe,
 } from "@/utils";
 
 import RecipeCard from "@/components/shared/RecipeCard";
@@ -70,7 +72,14 @@ export default {
   },
   name: "Profile",
   components: { RecipeCard },
-  props: ["language", "images"],
+  props: ["language", "images", "refreshApp"],
+  methods: {
+    deleteRecipe: function(recipeId) {
+      deleteRecipe(recipeId);
+      this.$props.refreshApp();
+      this.recipes = this.recipes.filter(recipe => recipe.id !== recipeId);
+    }
+  },
   mounted() {
     this.recipes = getMyRecipesForLanguage(this.$props.language);
     this.comments = getMyCommentsForLanguage(this.$props.language);

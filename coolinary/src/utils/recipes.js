@@ -65,9 +65,24 @@ export const saveRecipeForType = (data) => {
 
 export const getMyRecipesForLanguage = (language) => {
 	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
-	console.log(userId)
 	return getRecipesForLanguage(language).filter(
 		(recipe) => recipe.userId === userId
+	)
+}
+
+export const deleteRecipe = id => {
+	const [srRecipes, engRecipes] = getRecipes()
+
+	const updatedSerbianRecipes = srRecipes.filter(recipe => recipe.id !== id)
+	const updatedEnglishRecipes = engRecipes.filter(recipe => recipe.id !== id)
+
+	window.localStorage.setItem(
+		'srRecipes',
+		JSON.stringify(updatedSerbianRecipes)
+	)
+	window.localStorage.setItem(
+		'engRecipes',
+		JSON.stringify(updatedEnglishRecipes)
 	)
 }
 
