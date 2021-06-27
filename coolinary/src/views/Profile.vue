@@ -45,7 +45,8 @@
         <router-link :to="'/recipes/recipe/' + rating.recipeId"
           ><span class="aqua_link">{{ rating.recipeName }}</span></router-link
         >
-        with <strong>{{ rating.rating }}</strong>&nbsp; stars.
+        with <strong>{{ rating.rating }}</strong
+        >&nbsp; stars.
       </div>
       <div v-if="ratings.length === 0">You didn't post any ratings.</div>
     </div>
@@ -74,22 +75,23 @@ export default {
   components: { RecipeCard },
   props: ["language", "images", "refreshApp"],
   methods: {
-    deleteRecipe: function(recipeId) {
+    deleteRecipe: function (recipeId) {
       deleteRecipe(recipeId);
       this.$props.refreshApp();
-      this.recipes = this.recipes.filter(recipe => recipe.id !== recipeId);
-    }
+      this.refreshData();
+    },
+    refreshData: function () {
+      this.recipes = getMyRecipesForLanguage(this.$props.language);
+      this.comments = getMyCommentsForLanguage(this.$props.language);
+      this.ratings = getMyRatingsForLanguage(this.$props.language);
+    },
   },
   mounted() {
-    this.recipes = getMyRecipesForLanguage(this.$props.language);
-    this.comments = getMyCommentsForLanguage(this.$props.language);
-    this.ratings = getMyRatingsForLanguage(this.$props.language);
+    this.refreshData();
   },
   watch: {
-    language: function (language) {
-      this.recipes = getMyRecipesForLanguage(language);
-      this.comments = getMyCommentsForLanguage(language);
-      this.ratings = getMyRatingsForLanguage(language);
+    language: function () {
+      this.refreshData();
     },
   },
 };
@@ -117,8 +119,8 @@ a {
 }
 
 @media only screen and (max-width: 1024px) {
-.profile {
-  padding: 0 5%;
-}
+  .profile {
+    padding: 0 5%;
+  }
 }
 </style>
