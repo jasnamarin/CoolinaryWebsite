@@ -9,7 +9,7 @@ export default [
 		time: '',
 		level: '',
 		video: [],
-		photo: [],
+		photo: ['exampleImage1', 'exampleImage2', 'exampleImage3'],
 		ratings: [
 			{
 				userId: 0,
