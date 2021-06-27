@@ -6,7 +6,7 @@
     "appetizers" :
     [
         {
-            "name": "",
+            "name": "Apetajzer1",
             "instructions" : "",
             "time" : "",
             "level" : "",
@@ -17,7 +17,7 @@
         },
 
         {
-            "name": "",
+            "name": "Apetajzer2",
             "instructions" : "",
             "time" : "",
             "level" : "",
@@ -28,10 +28,10 @@
         }
     ],
 
-    "main-dishes" :
+    "mainDishes" :
     [
         {
-            "name": "",
+            "name": "Glavno1",
             "instructions" : "",
             "time" : "",
             "level" : "",
@@ -42,7 +42,7 @@
         },
 
         {
-            "name": "",
+            "name": "Glavno2",
             "instructions" : "",
             "time" : "",
             "level" : "",
@@ -56,7 +56,7 @@
     "desserts" :
     [
         {
-            "name": "",
+            "name": "Dezert1",
             "instructions" : "",
             "time" : "",
             "level" : "",
@@ -67,7 +67,7 @@
         },
 
         {
-            "name": "",
+            "name": "Dezert2",
             "instructions" : "",
             "time" : "",
             "level" : "",
@@ -81,7 +81,7 @@
     "snacks" :
     [
         {
-            "name": "",
+            "name": "Uzina1",
             "instructions" : "",
             "time" : "",
             "level" : "",
@@ -92,7 +92,7 @@
         },
 
         {
-            "name": "",
+            "name": "Uzina2",
             "instructions" : "",
             "time" : "",
             "level" : "",
