@@ -18,14 +18,14 @@
           <Button type="submit" :text="dictionary.search" />
         </div>
       </div>
-      
-      <div>
+
+      <div class="recipe-card">
      <RecipeCard/>
      </div>
-     <div>
-     <RecipeCard/>
+     <div class="recipe-card">
+     <RecipeCard name="A Recipe" thumbnail='../../assets/images/thumbnails/dessert-thumbnail.jpg' category="dessert" level=3 time="30min"/>
      </div>
-     <div>
+     <div class="recipe-card">
      <RecipeCard/>
      </div>
 
@@ -35,15 +35,10 @@
 
 
 <script>
-<<<<<<< Updated upstream
 import { getRecipesForLanguageAndType } from '@/utils'
 
 import rsLang from '@/assets/language/recipes/sr.json';
 import engLang from '@/assets/language/recipes/eng.json';
-=======
-import rsLang from "@/assets/language/recipes/sr.json";
-import engLang from "@/assets/language/recipes/eng.json";
->>>>>>> Stashed changes
 
 import Button from "@/components/shared/Button.vue";
 import Input from "@/components/shared/Input.vue";
@@ -64,10 +59,6 @@ export default {
   },
   computed: {
     dictionary: function () {
-<<<<<<< Updated upstream
-=======
-      console.log(this.$props.language);
->>>>>>> Stashed changes
       return this.$props.language === "english" ? engLang : rsLang;
     },
   },
@@ -92,6 +83,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+.recipe-card {
+    margin: 2rem auto;
+}
+
 select {
   width: 100%;
   min-width: 15ch;
@@ -137,6 +133,7 @@ select::-ms-expand {
   }
 
     &__container {
+        align-items: center;
         display: flex;
         flex-direction: column;
         width:100%;
