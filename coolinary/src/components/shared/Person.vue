@@ -1,13 +1,13 @@
 <template>
-    <div class="person">
+  <div class="person">
     <article class="blog-card">
-      <img
-        class="post-image"
-        :src="_src"
-      />
+      <img class="person-image" :src="_src" />
       <div class="article-details">
-        <h4 class="post-category">{{ person.name }}</h4>
-        <h3 class="post-title">{{ person.Description }}</h3>
+        <h4 class="person-name">
+          {{ person.name }}
+          <a target="_blank" class="aqua-link" :href="person.href">(Website)</a>
+        </h4>
+        <h3 class="person-description">{{ person.description }}</h3>
       </div>
     </article>
   </div>
@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "RecipeCard",
+  name: "Person",
   data() {
     return {
       isLoggedIn: false,
@@ -25,10 +25,9 @@ export default {
     this.isLoggedIn = !!window.localStorage.getItem("user");
   },
   props: ["person", "images"],
-  components: {
-  },
+  components: {},
   computed: {
-    _src: function() {
+    _src: function () {
       const { person, images } = this.$props;
       return `data:image/png;base64, ${images[person.image]}`;
     },
@@ -57,40 +56,25 @@ $shadow: rgba(0, 0, 0, 0.2);
   }
 }
 
+.aqua-link {
+  color: var(--color-aqua);
+  text-decoration: none;
+}
+
 .person {
   position: relative;
   max-width: 60rem;
   display: flex;
   flex-direction: row;
   background: $white;
-  box-shadow: 0 0.1875rem 1.5rem $shadow;
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0.375rem;
   overflow: hidden;
   text-align: left;
+  text-overflow: ellipsis;
 }
 
-.delete {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-}
-
-.card-link {
-  position: relative;
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  &:hover .post-title {
-    @include transition(color 0.3s ease);
-    color: $red;
-  }
-  &:hover .post-image {
-    @include transition(opacity 0.3s ease);
-    opacity: 0.9;
-  }
-}
-
-.post-image {
+.person-image {
   @include transition(opacity 0.3s ease);
   display: block;
   max-height: 240px;
@@ -103,10 +87,10 @@ $shadow: rgba(0, 0, 0, 0.2);
   padding: 1.5rem;
 }
 
-.post-category {
+.person-name {
   display: inline-block;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 16px;
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.0625rem;
@@ -115,12 +99,11 @@ $shadow: rgba(0, 0, 0, 0.2);
   border-bottom: 0.125rem solid $border;
 }
 
-.post-title {
+.person-description {
   @include transition(color 0.3s ease);
   font-size: 1.125rem;
   line-height: 1.4;
-  color: $black;
-  font-weight: 700;
+  font-weight: 400;
   margin: 0 0 0.5rem 0;
 }
 
@@ -157,7 +140,7 @@ $shadow: rgba(0, 0, 0, 0.2);
     justify-self: center;
   }
 
-  .post-image {
+  .person-image {
     height: 100%;
   }
 
@@ -176,7 +159,7 @@ $shadow: rgba(0, 0, 0, 0.2);
 }
 
 @media only screen and (max-width: 1024px) {
-  .card {
+  .person {
     max-width: 736px;
   }
 }
