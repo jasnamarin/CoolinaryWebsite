@@ -1,0 +1,11 @@
+{
+    "favouriteRecipes": "Your favourite recipes",
+    "onePlace": "at one place",
+    "bestBlogs": "We've picked out best food bloggers for you",
+    "topRecipes": "Our best recipes",
+    "gordon": {
+        "image": "gordon",
+        "name": "Gordon Ramsay",
+        "description": "Famous dude and kind guy."
+    }
+}

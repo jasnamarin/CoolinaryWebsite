@@ -1,13 +1,27 @@
 <template>
   <header :class="hasBoxShadow ? 'header__boxShadow' : ''" class="header">
-    <h2>(Logo) {{ dictionary.header }}</h2>
+    <router-link style="text-decoration: none;" to="/"
+      ><h2 class="header__logo">
+        <svg
+          width="48px"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 490 490"
+        >
+          <defs />
+          <path
+            d="M412.842 94.37H124.343c-20.271 0-36.76-16.484-36.76-36.754 0-20.271 16.489-36.765 36.76-36.765h288.499c13.536 0 13.993-20.851 0-20.851H124.343C92.577 0 66.732 25.85 66.732 57.616v336.997c0 52.596 42.786 95.387 95.382 95.387h250.728c5.757 0 10.426-4.662 10.426-10.426V104.795c0-5.762-4.669-10.425-10.426-10.425zm-157.845 20.851h76.45v124.455l-29.561-35.665c-3.125-3.573-10.347-6.441-15.969-.102l-30.92 36.348V115.221zm-92.882 353.928c-41.097 0-74.531-33.435-74.531-74.536V101.934c9.982 8.292 22.798 13.287 36.76 13.287h109.803V268.59c0 9.49 12.04 13.951 18.367 6.761l41.239-48.472 40.094 48.37c7.415 7.812 18.453 1.989 18.453-6.659V115.221h50.118v353.928H162.115z"
+          />
+        </svg>
+        {{ dictionary.header }}
+      </h2></router-link
+    >
     <nav class="header__nav">
       <div class="header__navbar">
         <div class="header__item">
           <div class="breadcrumb">
             {{ breadcrumb }}
           </div>
-          <a href="#" class="header__link">
+          <a class="header__link">
             <button
               class="header--button"
               v-if="show"
@@ -48,7 +62,7 @@
               <ul class="dropdown__menu-nav">
                 <router-link to="/" class="styled-link">
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a href="#" class="dropdown__menu-link" title="Home">
+                    <a class="dropdown__menu-link" title="Home">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +82,7 @@
                 </router-link>
                 <router-link to="/recipes" class="styled-link">
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a href="#" class="dropdown__menu-link" title="Recipes">
+                    <a class="dropdown__menu-link" title="Recipes">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -91,11 +105,7 @@
                   class="styled-link"
                 >
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a
-                      href="#"
-                      class="dropdown__menu-link"
-                      title="Share recipe"
-                    >
+                    <a class="dropdown__menu-link" title="Share recipe">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +128,7 @@
                   class="styled-link"
                 >
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a href="#" class="dropdown__menu-link" title="Profile">
+                    <a class="dropdown__menu-link" title="Profile">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +150,7 @@
                   </li> </router-link
                 ><router-link to="/about" class="styled-link">
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a href="#" class="dropdown__menu-link" title="About">
+                    <a class="dropdown__menu-link" title="About">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +176,7 @@
                   class="dropdown__menu-item"
                   v-on:click="logout"
                 >
-                  <a href="#" class="dropdown__menu-link" title="Logout">
+                  <a class="dropdown__menu-link" title="Logout">
                     <div class="dropdown__menu-svg">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -192,7 +202,7 @@
                     class="dropdown__menu-item"
                     v-on:click="show = false"
                   >
-                    <a href="#" class="dropdown__menu-link" title="About">
+                    <a class="dropdown__menu-link" title="About">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -272,7 +282,7 @@ export default {
     },
   },
   mounted() {
-    if (this.$route?.name?.includes('RecipesList')) {
+    if (this.$route?.name?.includes("RecipesList")) {
       this.hasBoxShadow = false;
       return;
     }
@@ -280,14 +290,14 @@ export default {
     this.hasBoxShadow = true;
   },
   watch: {
-    $route: function(to) {
-      if (to?.name?.includes('RecipesList')) {
-      this.hasBoxShadow = false;
-      return;
-    }
+    $route: function (to) {
+      if (to?.name?.includes("RecipesList")) {
+        this.hasBoxShadow = false;
+        return;
+      }
 
-    this.hasBoxShadow = true;
-    }
+      this.hasBoxShadow = true;
+    },
   },
   computed: {
     dictionary: function () {
@@ -322,6 +332,18 @@ export default {
   top: 0;
   background: #fff;
   width: 100%;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    color: var(--color-primary);
+
+    svg {
+      fill: var(--color-primary);
+      margin-right: 12px;
+      margin-top: -12px;
+    }
+  }
 
   &__boxShadow {
     box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);

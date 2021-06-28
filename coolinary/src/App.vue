@@ -57,6 +57,12 @@ export default {
   color: var(--color-primary);
 }
 
+@font-face {
+  font-family: "TitleFont";
+  src: local("TitleFont"),
+   url('./assets/fonts/TitleFont2.ttf') format("truetype");
+}
+
 :root {
   --font-primary: "Open Sans", sans-serif;
   --color-gray: #dadce0;

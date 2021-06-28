@@ -36,7 +36,7 @@ export default {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 1rem;
     max-width: 100rem;
-    margin: 5rem auto;
+    margin: 4.5rem auto 0 auto;
     padding: 7rem 5rem;
 
     $small: 900px;
