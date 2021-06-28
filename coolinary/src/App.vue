@@ -64,6 +64,7 @@ export default {
   --color-green: #17bf63;
   --color-red: #f4394d;
   --color-blue: #0d82eb;
+  --color-aqua: #65BBE9;
 }
 
 *,

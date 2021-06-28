@@ -62,3 +62,49 @@ export const saveRecipeForType = (data) => {
 		JSON.stringify(updatedEnglishRecipes)
 	)
 }
+
+export const getMyRecipesForLanguage = (language) => {
+	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+	return getRecipesForLanguage(language).filter(
+		(recipe) => recipe.userId === userId
+	)
+}
+
+export const deleteRecipe = id => {
+	const [srRecipes, engRecipes] = getRecipes()
+
+	const updatedSerbianRecipes = srRecipes.filter(recipe => recipe.id !== id)
+	const updatedEnglishRecipes = engRecipes.filter(recipe => recipe.id !== id)
+
+	window.localStorage.setItem(
+		'srRecipes',
+		JSON.stringify(updatedSerbianRecipes)
+	)
+	window.localStorage.setItem(
+		'engRecipes',
+		JSON.stringify(updatedEnglishRecipes)
+	)
+}
+
+export const getMyCommentsForLanguage = (language) => {
+	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+	return getRecipesForLanguage(language).reduce((acc, recipe) => {
+		return [
+			...acc,
+			...(recipe?.comments?.filter(
+				(comment) => comment.userId === userId
+			) ?? []),
+		]
+	}, [])
+}
+
+export const getMyRatingsForLanguage = (language) => {
+	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+	return getRecipesForLanguage(language).reduce((acc, recipe) => {
+		return [
+			...acc,
+			...(recipe?.ratings?.filter((rating) => rating.userId === userId) ??
+				[]),
+		]
+	}, [])
+}

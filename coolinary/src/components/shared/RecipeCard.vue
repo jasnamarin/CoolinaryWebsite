@@ -6,6 +6,9 @@
         class="post-image"
         :src="_src"
       />
+      <div v-if="onDelete !== undefined" @click.prevent="onDelete(id)" class="delete">
+        <svg xmlns="http://www.w3.org/2000/svg" width="52px" fill="#F4394D" viewBox="0 0 320.773 320.773"><defs/><path d="M95.915 45.957L0 160.387l95.915 114.43h224.858V45.957H95.915zm209.858 213.859H102.914l-83.342-99.43 83.342-99.43h202.859v198.86z"/><path d="M159.13 213.038l42.045-42.044 42.045 42.044 10.607-10.607-42.045-42.044 42.045-42.044-10.607-10.608-42.045 42.045-42.045-42.045-10.606 10.608 42.044 42.044-42.044 42.044z"/></svg>
+      </div>
       <div class="article-details">
         <h4 class="post-category">{{ category }}</h4>
         <h3 class="post-title">{{ name }}</h3>
@@ -15,7 +18,7 @@
         </p>
         <p class="rating">
           <star-rating
-            read-only="true"
+            :read-only="true"
             :show-rating="false"
             v-model:rating="_rating"
           ></star-rating>
@@ -51,6 +54,7 @@ export default {
     "time",
     "rating",
     "language",
+    "onDelete"
   ],
   components: {
     StarRating,
@@ -96,6 +100,7 @@ $shadow: rgba(0, 0, 0, 0.2);
 }
 
 .blog-card {
+  position: relative;
   max-width: 60rem;
   display: flex;
   flex-direction: row;
@@ -104,6 +109,12 @@ $shadow: rgba(0, 0, 0, 0.2);
   border-radius: 0.375rem;
   overflow: hidden;
   text-align: left;
+}
+
+.delete {
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 
 .card-link {
@@ -125,6 +136,7 @@ $shadow: rgba(0, 0, 0, 0.2);
   @include transition(opacity 0.3s ease);
   display: block;
   max-height: 240px;
+  min-height: 240px;
   width: 320px;
   object-fit: cover;
 }
