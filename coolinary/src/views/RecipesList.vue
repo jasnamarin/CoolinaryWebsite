@@ -87,6 +87,15 @@ export default {
     sort: function () {
       this.filteredRecipes = this.filteredRecipes.sort(this.getSort());
     },
+    $route: function(to) {
+      const type = to.fullPath.split("/").slice(-1)[0];
+      this.recipes = getRecipesForLanguageAndType(this.$props.language, type);
+      this.filteredRecipes = this.recipes
+        .filter((recipe) =>
+          recipe.name.toLowerCase().includes(this.search.toLowerCase())
+        )
+        .sort(this.getSort());
+    }
   },
   methods: {
     getSort: function () {

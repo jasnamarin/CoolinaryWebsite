@@ -9,5 +9,9 @@
     "close": "Close",
     "navigationMenu": "Navigation Menu",
     "logout": "Log Out",
-    "login": "Log In"
+    "login": "Log In",
+    "snacks": "Snacks",
+    "appetizers": "Appetizers",
+    "mainDishes": "Main Dishes",
+    "desserts": "Desserts"
 }

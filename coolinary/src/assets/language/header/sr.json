@@ -9,5 +9,9 @@
     "close": "Zatvori",
     "navigationMenu": "Meni",
     "logout": "Odjavite Se",
-    "login": "Prijavite Se"
+    "login": "Prijavite Se",
+    "snacks": "Užine",
+    "appetizers": "Predjela",
+    "mainDishes": "Glavna jela",
+    "desserts": "Deserti"
 }
