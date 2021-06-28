@@ -88,16 +88,19 @@ $shadow: rgba(0, 0, 0, 0.2);
   padding-top: 7rem;
   padding-bottom: 7rem;
   overflow-y: auto;
-  margin: 1rem 14rem;
+  
 
   &__overviewContainer {
-    background-size: cover;
+    height: 30rem;
+    background-color: gray;
+    padding: 0.5rem;
   }
 
   &__overview {
+    background-color: white;
     border: 2px solid var(--color-gray);
     border-radius: 20px;
-
+    margin: 1rem 14rem;
     display: flex;
     align-items: center;
     height: 200px;
