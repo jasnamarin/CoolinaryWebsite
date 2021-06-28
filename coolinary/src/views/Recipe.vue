@@ -19,6 +19,9 @@
       </div>
       </div>
     </div>
+
+    <img :key="image" v-for="image in recipe.photo" :src="getSrc(image)" alt="">
+
   </div>
 </template>
 
@@ -45,16 +48,27 @@ export default {
 
     this.recipe = recipes.find(recipe => recipe.id === id) ?? {};
     this.isLoggedIn = !!window.localStorage.getItem("user");
+
+    console.log(this.$props.images)
   },
   props: [
-    "rating",
-    "language",
+    "language", "images",
   ],
   components: {
     StarRating,
   },
+  methods: {
+    thumbUrl(filename) {
+      return require(`../assets/images/thumbnails/${filename}`);
+    },
+    getSrc(image) {
+      console.log(image)
+      return `data:image/png;base64, ${this.$props.images[image]}`;
+    }
+  },
   computed: {
     _src: function() {
+      //return `data:image/png;base64, ${images[this.recipe.thumbnail]}`;
       return `data:image/png;base64, ${this.thumbnail}`;
     },
     _rating: {
@@ -83,34 +97,46 @@ $red: #e04f62;
 $border: #ebebeb;
 $shadow: rgba(0, 0, 0, 0.2);
 
+@mixin transition($args...) {
+  transition: $args;
+}
+
 .recipe {
   height: 100vh;
   padding-top: 7rem;
   padding-bottom: 7rem;
   overflow-y: auto;
-  
 
   &__overviewContainer {
-    height: 30rem;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     background-color: gray;
-    padding: 0.5rem;
+    background-image: url("../assets/images/thumbnails/appetizer-thumbnail.jpg");
   }
 
   &__overview {
-    background-color: white;
-    border: 2px solid var(--color-gray);
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 1rem 10rem 1rem 10rem;
     border-radius: 20px;
-    margin: 1rem 14rem;
+    margin: 1rem auto;
     display: flex;
     align-items: center;
     height: 200px;
     text-align: left;
-    padding-left: 4rem;
   }
 }
 
 
-
+.post-image {
+  @include transition(opacity 0.3s ease);
+  display: block;
+  max-height: 240px;
+  min-height: 240px;
+  width: 320px;
+  object-fit: cover;
+}
 
 .article-details {
   padding: 1.5rem;
