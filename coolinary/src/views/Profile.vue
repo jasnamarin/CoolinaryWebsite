@@ -1,6 +1,6 @@
 <template>
   <div class="profile">
-    <h2>My recipes</h2>
+    <h2>{{ dictionary.myRecipes }}</h2>
     <hr />
     <div class="recipes">
       <div :key="recipe.id" v-for="recipe in recipes" class="recipe-card">
@@ -16,9 +16,9 @@
           :rating="recipe.rating"
         />
       </div>
-      <div v-if="recipes.length === 0">You don't have any recipes.</div>
+      <div v-if="recipes.length === 0">{{ dictionary.noRecipes }}.</div>
     </div>
-    <h2>My comments</h2>
+    <h2>{{ dictionary.myComments }}</h2>
     <hr />
     <div class="comments">
       <div
@@ -31,9 +31,9 @@
           ><span class="aqua_link">{{ comment.recipeName }}</span></router-link
         >
       </div>
-      <div v-if="comments.length === 0">You didn't post any comments.</div>
+      <div v-if="comments.length === 0">{{ dictionary.noComments }}.</div>
     </div>
-    <h2>My ratings</h2>
+    <h2>{{ dictionary.myRatings }}</h2>
     <hr />
     <div class="ratings">
       <div
@@ -41,14 +41,14 @@
         v-for="(rating, index) in ratings"
         class="recipe-card"
       >
-        Rated
+        {{ dictionary.rated }}
         <router-link :to="'/recipes/recipe/' + rating.recipeId"
           ><span class="aqua_link">{{ rating.recipeName }}</span></router-link
         >
-        with <strong>{{ rating.rating }}</strong
-        >&nbsp; stars.
+        {{ dictionary.with }} <strong>{{ rating.rating }}</strong
+        >&nbsp; {{ dictionary.stars }}.
       </div>
-      <div v-if="ratings.length === 0">You didn't post any ratings.</div>
+      <div v-if="ratings.length === 0">{{ dictionary.noRatings }}.</div>
     </div>
   </div>
 </template>
@@ -60,6 +60,9 @@ import {
   getMyRatingsForLanguage,
   deleteRecipe,
 } from "@/utils";
+
+import englishDictionary from "@/assets/language/profile/eng.json"
+import serbianDictionary from "@/assets/language/profile/sr.json"
 
 import RecipeCard from "@/components/shared/RecipeCard";
 
@@ -85,6 +88,11 @@ export default {
       this.comments = getMyCommentsForLanguage(this.$props.language);
       this.ratings = getMyRatingsForLanguage(this.$props.language);
     },
+  },
+  computed: {
+    dictionary: function() {
+      return this.$props.language === "english" ? englishDictionary : serbianDictionary;
+    }
   },
   mounted() {
     this.refreshData();
