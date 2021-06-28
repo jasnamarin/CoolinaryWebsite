@@ -108,3 +108,7 @@ export const getMyRatingsForLanguage = (language) => {
 		]
 	}, [])
 }
+
+export const getBest3RecipesForLanguage = (language) => {
+	return getRecipesForLanguage(language).sort((a, b) => b.rating - a.rating).slice(0, 3)
+}

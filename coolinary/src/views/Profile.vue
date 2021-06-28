@@ -100,7 +100,7 @@ export default {
 <style lang="scss" scoped>
 .profile {
   text-align: left;
-  margin: 7rem 0;
+  margin: 10rem 0 6rem 0;
   padding: 0 20%;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header :class="hasBoxShadow ? 'header__boxShadow' : ''" class="header">
     <h2>(Logo) {{ dictionary.header }}</h2>
     <nav class="header__nav">
       <div class="header__navbar">
@@ -259,6 +259,7 @@ export default {
   data() {
     return {
       show: false,
+      hasBoxShadow: true,
     };
   },
   props: ["language", "isLoggedIn", "refreshApp"],
@@ -267,8 +268,26 @@ export default {
       this.show = false;
       window.localStorage.removeItem("user");
       this.$props.refreshApp();
-      this.$router.push("/login");
+      this.$router.push({ path: "/login" });
     },
+  },
+  mounted() {
+    if (this.$route?.name?.includes('RecipesList')) {
+      this.hasBoxShadow = false;
+      return;
+    }
+
+    this.hasBoxShadow = true;
+  },
+  watch: {
+    $route: function(to) {
+      if (to?.name?.includes('RecipesList')) {
+      this.hasBoxShadow = false;
+      return;
+    }
+
+    this.hasBoxShadow = true;
+    }
   },
   computed: {
     dictionary: function () {
@@ -303,6 +322,10 @@ export default {
   top: 0;
   background: #fff;
   width: 100%;
+
+  &__boxShadow {
+    box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);
+  }
 
   h2 {
     width: 420px;
