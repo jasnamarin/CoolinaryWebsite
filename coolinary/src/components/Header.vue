@@ -1,13 +1,27 @@
 <template>
-  <header class="header">
-    <h2>(Logo) {{ dictionary.header }}</h2>
+  <header :class="hasBoxShadow ? 'header__boxShadow' : ''" class="header">
+    <router-link style="text-decoration: none" to="/"
+      ><h2 class="header__logo">
+        <svg
+          width="48px"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 490 490"
+        >
+          <defs />
+          <path
+            d="M412.842 94.37H124.343c-20.271 0-36.76-16.484-36.76-36.754 0-20.271 16.489-36.765 36.76-36.765h288.499c13.536 0 13.993-20.851 0-20.851H124.343C92.577 0 66.732 25.85 66.732 57.616v336.997c0 52.596 42.786 95.387 95.382 95.387h250.728c5.757 0 10.426-4.662 10.426-10.426V104.795c0-5.762-4.669-10.425-10.426-10.425zm-157.845 20.851h76.45v124.455l-29.561-35.665c-3.125-3.573-10.347-6.441-15.969-.102l-30.92 36.348V115.221zm-92.882 353.928c-41.097 0-74.531-33.435-74.531-74.536V101.934c9.982 8.292 22.798 13.287 36.76 13.287h109.803V268.59c0 9.49 12.04 13.951 18.367 6.761l41.239-48.472 40.094 48.37c7.415 7.812 18.453 1.989 18.453-6.659V115.221h50.118v353.928H162.115z"
+          />
+        </svg>
+        {{ dictionary.header }}
+      </h2></router-link
+    >
     <nav class="header__nav">
       <div class="header__navbar">
         <div class="header__item">
           <div class="breadcrumb">
             {{ breadcrumb }}
           </div>
-          <a href="#" class="header__link">
+          <a class="header__link">
             <button
               class="header--button"
               v-if="show"
@@ -48,7 +62,7 @@
               <ul class="dropdown__menu-nav">
                 <router-link to="/" class="styled-link">
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a href="#" class="dropdown__menu-link" title="Home">
+                    <a class="dropdown__menu-link" title="Home">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -68,34 +82,116 @@
                 </router-link>
                 <router-link to="/recipes" class="styled-link">
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a href="#" class="dropdown__menu-link" title="Recipes">
-                      <div class="dropdown__menu-svg">
+                    <a
+                      class="dropdown__menu-link dropdown__menu-link--ver"
+                      title="Recipes"
+                    >
+                      <div class="dropdown__menu--mainContainer">
+                        <div class="dropdown__menu-svg">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 64 64"
+                          >
+                            <defs />
+                            <path
+                              d="M55.531 13.515a6.8 6.8 0 00-4.778-1.98H16.077a1.828 1.828 0 01-1.821-1.839 1.923 1.923 0 011.929-1.929h33.118a1 1 0 100-2H16.185a3.906 3.906 0 00-2.78 1.152 3.914 3.914 0 00-1.15 2.794 3.826 3.826 0 003.822 3.822H18V37.19a1 1 0 001.707.707l5.586-5.586a.997.997 0 011.414 0l5.586 5.586A1 1 0 0034 37.19V13.535h16.753c1.253 0 2.48.508 3.364 1.394.9.9 1.395 2.095 1.395 3.365V57.32c0 1.25-.488 2.425-1.371 3.309S52.082 62 50.832 62H13.329a4.812 4.812 0 01-3.423-1.416 4.82 4.82 0 01-1.418-3.425V8.16A6.167 6.167 0 0114.648 2h38.98a1 1 0 100-2h-38.98c-4.5 0-8.16 3.66-8.16 8.16v49c0 1.825.711 3.543 2.003 4.837A6.799 6.799 0 0013.33 64h37.503a6.632 6.632 0 004.723-1.957 6.632 6.632 0 001.957-4.723V18.294a6.715 6.715 0 00-1.98-4.78zM32 34.775l-3.879-3.878A2.98 2.98 0 0026 30.018a2.98 2.98 0 00-2.121.879L20 34.775V13.604h12v21.171z"
+                            />
+                          </svg>
+                        </div>
+                        <div class="dropdown__menu-text">
+                          {{ dictionary.recipes }}
+                        </div>
                         <svg
+                          :style="getIconStyle()"
                           xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 64 64"
+                          width="20px"
+                          @click.prevent.stop.prevent="toggleRecipes"
+                          viewBox="0 0 451.847 451.847"
                         >
                           <defs />
                           <path
-                            d="M55.531 13.515a6.8 6.8 0 00-4.778-1.98H16.077a1.828 1.828 0 01-1.821-1.839 1.923 1.923 0 011.929-1.929h33.118a1 1 0 100-2H16.185a3.906 3.906 0 00-2.78 1.152 3.914 3.914 0 00-1.15 2.794 3.826 3.826 0 003.822 3.822H18V37.19a1 1 0 001.707.707l5.586-5.586a.997.997 0 011.414 0l5.586 5.586A1 1 0 0034 37.19V13.535h16.753c1.253 0 2.48.508 3.364 1.394.9.9 1.395 2.095 1.395 3.365V57.32c0 1.25-.488 2.425-1.371 3.309S52.082 62 50.832 62H13.329a4.812 4.812 0 01-3.423-1.416 4.82 4.82 0 01-1.418-3.425V8.16A6.167 6.167 0 0114.648 2h38.98a1 1 0 100-2h-38.98c-4.5 0-8.16 3.66-8.16 8.16v49c0 1.825.711 3.543 2.003 4.837A6.799 6.799 0 0013.33 64h37.503a6.632 6.632 0 004.723-1.957 6.632 6.632 0 001.957-4.723V18.294a6.715 6.715 0 00-1.98-4.78zM32 34.775l-3.879-3.878A2.98 2.98 0 0026 30.018a2.98 2.98 0 00-2.121.879L20 34.775V13.604h12v21.171z"
+                            d="M225.923 354.706c-8.098 0-16.195-3.092-22.369-9.263L9.27 151.157c-12.359-12.359-12.359-32.397 0-44.751 12.354-12.354 32.388-12.354 44.748 0l171.905 171.915 171.906-171.909c12.359-12.354 32.391-12.354 44.744 0 12.365 12.354 12.365 32.392 0 44.751L248.292 345.449c-6.177 6.172-14.274 9.257-22.369 9.257z"
                           />
                         </svg>
                       </div>
-                      <div class="dropdown__menu-text">
-                        {{ dictionary.recipes }}
+                      <div v-if="showRecipes" class="dropdown__menu--innerItem">
+                        <router-link
+                          to="/recipes/appetizers"
+                          class="styled-link styled-link--inner"
+                        >
+                          <li
+                            class="dropdown__menu-item"
+                            v-on:click="show = false"
+                          >
+                            <a class="dropdown__menu-link" title="Recipes">
+                              <div class="dropdown__menu-item">
+                                {{ dictionary.appetizers }}
+                              </div>
+                            </a>
+                          </li>
+                        </router-link>
+                      </div>
+                      <div v-if="showRecipes" class="dropdown__menu--innerItem">
+                        <router-link
+                          to="/recipes/main-dishes"
+                          class="styled-link styled-link--inner"
+                        >
+                          <li
+                            class="dropdown__menu-item"
+                            v-on:click="show = false"
+                          >
+                            <a class="dropdown__menu-link" title="Recipes">
+                              <div class="dropdown__menu-item">
+                                {{ dictionary.mainDishes }}
+                              </div>
+                            </a>
+                          </li>
+                        </router-link>
+                      </div>
+                      <div v-if="showRecipes" class="dropdown__menu--innerItem">
+                        <router-link
+                          to="/recipes/snacks"
+                          class="styled-link styled-link--inner"
+                        >
+                          <li
+                            class="dropdown__menu-item"
+                            v-on:click="show = false"
+                          >
+                            <a class="dropdown__menu-link" title="Recipes">
+                              <div class="dropdown__menu-item">
+                                {{ dictionary.snacks }}
+                              </div>
+                            </a>
+                          </li>
+                        </router-link>
+                      </div>
+                      <div v-if="showRecipes" class="dropdown__menu--innerItem">
+                        <router-link
+                          to="/recipes/desserts"
+                          class="styled-link styled-link--inner"
+                        >
+                          <li
+                            class="dropdown__menu-item"
+                            v-on:click="show = false"
+                          >
+                            <a class="dropdown__menu-link" title="Recipes">
+                              <div class="dropdown__menu-item">
+                                {{ dictionary.desserts }}
+                              </div>
+                            </a>
+                          </li>
+                        </router-link>
                       </div>
                     </a>
-                  </li> </router-link
-                ><router-link
+                  </li>
+                </router-link>
+                <router-link
                   v-if="isLoggedIn"
                   to="/share-recipe"
                   class="styled-link"
                 >
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a
-                      href="#"
-                      class="dropdown__menu-link"
-                      title="Share recipe"
-                    >
+                    <a class="dropdown__menu-link" title="Share recipe">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -118,7 +214,7 @@
                   class="styled-link"
                 >
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a href="#" class="dropdown__menu-link" title="Profile">
+                    <a class="dropdown__menu-link" title="Profile">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +236,7 @@
                   </li> </router-link
                 ><router-link to="/about" class="styled-link">
                   <li class="dropdown__menu-item" v-on:click="show = false">
-                    <a href="#" class="dropdown__menu-link" title="About">
+                    <a class="dropdown__menu-link" title="About">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -166,7 +262,7 @@
                   class="dropdown__menu-item"
                   v-on:click="logout"
                 >
-                  <a href="#" class="dropdown__menu-link" title="Logout">
+                  <a class="dropdown__menu-link" title="Logout">
                     <div class="dropdown__menu-svg">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -192,7 +288,7 @@
                     class="dropdown__menu-item"
                     v-on:click="show = false"
                   >
-                    <a href="#" class="dropdown__menu-link" title="About">
+                    <a class="dropdown__menu-link" title="About">
                       <div class="dropdown__menu-svg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -259,6 +355,8 @@ export default {
   data() {
     return {
       show: false,
+      hasBoxShadow: true,
+      showRecipes: false,
     };
   },
   props: ["language", "isLoggedIn", "refreshApp"],
@@ -267,7 +365,35 @@ export default {
       this.show = false;
       window.localStorage.removeItem("user");
       this.$props.refreshApp();
-      this.$router.push("/login");
+      this.$router.push({ path: "/login" });
+    },
+    toggleRecipes: function () {
+      this.showRecipes = !this.showRecipes;
+    },
+    getIconStyle: function () {
+      if (this.showRecipes) {
+        return `transform: rotate(180deg);`;
+      }
+
+      return `transform: rotate(0deg);`;
+    },
+  },
+  mounted() {
+    if (this.$route?.name?.includes("RecipesList")) {
+      this.hasBoxShadow = false;
+      return;
+    }
+
+    this.hasBoxShadow = true;
+  },
+  watch: {
+    $route: function (to) {
+      if (to?.name?.includes("RecipesList")) {
+        this.hasBoxShadow = false;
+        return;
+      }
+
+      this.hasBoxShadow = true;
     },
   },
   computed: {
@@ -303,6 +429,22 @@ export default {
   top: 0;
   background: #fff;
   width: 100%;
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    color: var(--color-primary);
+
+    svg {
+      fill: var(--color-primary);
+      margin-right: 12px;
+      margin-top: -12px;
+    }
+  }
+
+  &__boxShadow {
+    box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);
+  }
 
   h2 {
     width: 420px;
@@ -346,6 +488,18 @@ export default {
   background-color: white;
   border: 1px solid var(--color-gray);
   background-clip: padding-box;
+
+  &--mainContainer {
+    display: flex;
+    margin-bottom: 8px;
+    align-items: center;
+  }
+
+  &--innerItem {
+    padding-left: 12px;
+    width: 80%;
+  }
+
   &-link {
     display: flex;
     align-items: center;
@@ -361,6 +515,11 @@ export default {
       color: var(--color-green);
       fill: var(--color-green);
       background-color: rgba(79, 192, 141, 0.1);
+    }
+
+    &--ver {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
   &-svg {

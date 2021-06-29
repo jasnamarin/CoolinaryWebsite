@@ -1,0 +1,22 @@
+{
+    "favouriteRecipes": "Tvoji omiljeni recepti",
+    "onePlace": "na jednom mestu",
+    "topRecipes": "Naši najbolji recepti",
+    "bestChefs": "Uči od najboljih",
+	"gordon": {
+		"image": "gordon",
+		"name": "Gordon Ramsay",
+		"href": "https://www.gordonramsay.com/",
+		"description": "Internacionalno priznat, poznati kuvar Gordon Ramsay je otvorio lanac uspešnih restorana širom planete, počevši UK i Francuske do Singapura i SAD."
+	},
+	"clare": {
+		"image": "clare",
+		"name": "Clare Smyth",
+		"href": "https://www.corebyclaresmyth.com/",
+		"description": "Clare Smyth MBE (rođena 1978) je kuvarica iz severne Irske. Ona is the Chef Patron u Core restoranu koji je otvorila 2017."
+	},
+	"learnFromTheBest": "Podignite svoje veštine kuvanja na sledeći nivo uz najopsežnije časove kuvanja ikad kuvara Ramsay-a i Smyth-a. \nPridružite se Gordonu ili Clare u njihovoj kućnoj kuhinji radi nekih od najdubljih i najekskluzivnijih video lekcija na mreži, sa doživotnim pristupom svakom času. Ovo je kuvanje kao što nikada niste iskusili. \nŠefovi vas pozivaju u svoje domaće kuhinje za oba odeljenja kako biste naučili tehnike koje su im donele Michelin zvezde, kao i jela inspirisana iz njihovih restorana širom sveta. Naučiće vas svemu, od kupovine najsvežijih sastojaka do pravljenja nezaboravnih jela. \nKada savladate te veštine, moći ćete da naučite kako da kuvate savršene recepte za održavanje vrhunske zabave. Na ovom upisu u ograničenom izdanju, naučite veštine na nivou stručnjaka od samih majstora. \n Vaše pripravništvo u kuhinji započinje ovde.",
+    "blogs": "Blogovi",
+    "blogPartOne": "Uvek u toku sa najsvežijim receptima",
+    "blogPartTwo": "je jedan od najboljih blogova koji postoje"
+}

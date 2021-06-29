@@ -108,3 +108,42 @@ export const getMyRatingsForLanguage = (language) => {
 		]
 	}, [])
 }
+
+export const leaveRatingForRecipe = (recipeId, rating) => {
+	const recipe = getRecipes()[0].find(r => r.id === recipeId) ?? {}
+	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+
+	const ratings = [...(recipe.ratings ?? []), { rating, userId }]
+	const avgRating = Array.sum(ratings.map(r => r.rating)) / ratings.length
+
+	updateRecipe({ ...recipe, ratings, rating: avgRating })
+}
+
+export const leaveACommentForRecipe = (recipeId, comment) => {
+	const recipe = getRecipes()[0].find(r => r.id === recipeId) ?? {}
+	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+
+	updateRecipe({ ...recipe, comments: [...(recipe.comments ?? []), { comment, userId }]})
+}
+
+const updateRecipe = recipe => {
+	const mapRecipe = r => r.id === recipe.id ? recipe : r
+	const [serbianRecipes, englishRecipes] = getRecipes()
+
+	const updatedSerbianRecipes = serbianRecipes.map(mapRecipe)
+	const updatedEnglishRecipes = englishRecipes.map(mapRecipe)
+
+	window.localStorage.setItem(
+		'srRecipes',
+		JSON.stringify(updatedSerbianRecipes)
+	)
+
+	window.localStorage.setItem(
+		'engRecipes',
+		JSON.stringify(updatedEnglishRecipes)
+	)
+}
+
+export const getBest3RecipesForLanguage = (language) => {
+	return getRecipesForLanguage(language).sort((a, b) => b.rating - a.rating).slice(0, 3)
+}

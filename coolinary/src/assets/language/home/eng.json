@@ -1,0 +1,22 @@
+{
+	"favouriteRecipes": "Your favourite recipes",
+	"onePlace": "in one place",
+	"bestChefs": "Learn from the best cooks",
+	"topRecipes": "Our best recipes",
+	"gordon": {
+		"image": "gordon",
+		"name": "Gordon Ramsay",
+		"href": "https://www.gordonramsay.com/",
+		"description": "Internationally renowned, multi-Michelin starred chef Gordon Ramsay has opened a string of successful restaurants across the globe, from the UK and France to Singapore and the United States."
+	},
+	"clare": {
+		"image": "clare",
+		"name": "Clare Smyth",
+		"href": "https://www.corebyclaresmyth.com/",
+		"description": "Clare Smyth MBE (born 1978) is a Northern Irish chef. She is the Chef Patron of Core by Clare Smyth which opened in 2017."
+	},
+	"learnFromTheBest": "Take your cooking skills to the next level with Chef Ramsay’s and Smyth's most comprehensive cooking classes ever. \nJoin Gordon or Clare in their home kitchen for some of the most in-depth and exclusive online video lessons, with lifetime access to each class. This is cooking like you've never experienced. \nChefs invite you into their home kitchens for both classes to learn the techniques that have earned them Michelin stars as well as dishes inspired from their restaurants around the world. They will teach you everything from buying the freshest ingredients to constructing unforgettable dishes. \nOnce you’ve mastered those skills, you’ll be able to learn how to cook the perfect recipes to host the ultimate dinner party. Learn the expert-level skills from the masters themselves in this limited-edition enrolment.\n Your kitchen apprenticeship starts here.",
+    "blogs": "Blogs",
+    "blogPartOne": "Always up to date with fresh recipes",
+    "blogPartTwo": "is one of the best blogs out there"
+}
