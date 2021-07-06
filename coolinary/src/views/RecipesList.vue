@@ -83,11 +83,16 @@ export default {
     language: function (language) {
       const type = this.$route.fullPath.split("/").slice(-1)[0];
       this.recipes = getRecipesForLanguageAndType(language, type);
+      this.filteredRecipes = this.recipes
+        .filter((recipe) =>
+          recipe.name.toLowerCase().includes(this.search.toLowerCase())
+        )
+        .sort(this.getSort());
     },
     sort: function () {
       this.filteredRecipes = this.filteredRecipes.sort(this.getSort());
     },
-    $route: function(to) {
+    $route: function (to) {
       const type = to.fullPath.split("/").slice(-1)[0];
       this.recipes = getRecipesForLanguageAndType(this.$props.language, type);
       this.filteredRecipes = this.recipes
@@ -95,7 +100,7 @@ export default {
           recipe.name.toLowerCase().includes(this.search.toLowerCase())
         )
         .sort(this.getSort());
-    }
+    },
   },
   methods: {
     getSort: function () {
