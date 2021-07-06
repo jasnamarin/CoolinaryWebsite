@@ -110,13 +110,15 @@ export const getMyRatingsForLanguage = (language) => {
 	}, [])
 }
 
+const arrSum = arr => (arr ?? []).reduce((acc, curr) => acc + curr, 0)
+
 export const leaveRatingForRecipe = (recipeId, rating) => {
 	const recipe = getRecipes()[0].find(r => r.id === recipeId) ?? {}
 	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
 
 	const recipeRatings = (recipe.ratings ?? []).filter(r => r.userId !== userId)
 	const ratings = [...recipeRatings, { rating, userId }]
-	const avgRating = Array.sum(ratings.map(r => r.rating)) / ratings.length
+	const avgRating = arrSum(ratings.map(r => r.rating)) / ratings.length
 
 	updateRecipe({ ...recipe, ratings, rating: avgRating })
 }
@@ -128,7 +130,7 @@ export const leaveACommentForRecipe = (recipeId, comment) => {
 
 	const userComment = { comment, userId, user: `${user.firstName} ${user.lastName}` } 
 	updateRecipe({ ...recipe, comments: [...(recipe.comments ?? []), userComment]})
-	
+
 	return userComment
 }
 

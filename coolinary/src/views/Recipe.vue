@@ -10,7 +10,9 @@
           <h3 class="post-title">{{ recipe.name }}</h3>
           <p>
             {{ dictionary.difficulty }}: {{ recipe.level }} / 5 &nbsp; &nbsp;
-            &nbsp; &nbsp; {{ dictionary.estimatedTime }}: {{ recipe.time }}
+            &nbsp; &nbsp; {{ dictionary.estimatedTime }}: {{ recipe.time
+            }}<br />
+            {{ dictionary.rating }}: {{ recipe.rating }} / 5
           </p>
         </div>
       </div>
@@ -43,13 +45,14 @@
 
       <hr />
       <h2>
-        {{ dictionary.rating }}: &nbsp;
+        {{ dictionary.rate }}: &nbsp;
         <star-rating
           :inline="true"
           :star-size="25"
           :read-only="!isLoggedIn"
           :show-rating="false"
-          :v-model:rating="_rating"
+          :rating="userRating.rating"
+          @update:rating="updateRating"
         ></star-rating>
       </h2>
       <hr />
@@ -81,7 +84,7 @@
 </template>
 
 <script>
-import { getRecipesForLanguage, leaveACommentForRecipe } from "@/utils";
+import { getRecipesForLanguage, leaveACommentForRecipe, leaveRatingForRecipe } from "@/utils";
 
 import engDictionary from "@/assets/language/recipe-card/eng.json";
 import srDictionary from "@/assets/language/recipe-card/sr.json";
@@ -104,6 +107,7 @@ export default {
       isLoggedIn: false,
       comment: "",
       recipe: {},
+      userRating: {},
     };
   },
   created() {
@@ -125,7 +129,7 @@ export default {
       if (this.comment === "") {
         return;
       }
-      
+
       leaveACommentForRecipe(this.recipe.id, this.comment);
       this.comment = "";
       this.refreshRecipe();
@@ -134,17 +138,17 @@ export default {
       const id = parseInt(this.$route.params.id, 10);
       const recipes = getRecipesForLanguage(this.$props.language);
       this.recipe = recipes.find((recipe) => recipe.id === id) ?? {};
+
+      const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+
+      this.userRating = (this.recipe.ratings ?? []).find(r => r.userId === userId)
+    },
+    updateRating(newRating) {
+      leaveRatingForRecipe(this.recipe.id, newRating);
+      this.refreshRecipe();
     }
   },
   computed: {
-    _rating: {
-      get: function () {
-        return this.$props.rating;
-      },
-      set: function (newValue) {
-        this.$emit("update:rating", newValue);
-      },
-    },
     dictionary: function () {
       return this.$props.language === "english" ? engDictionary : srDictionary;
     },
