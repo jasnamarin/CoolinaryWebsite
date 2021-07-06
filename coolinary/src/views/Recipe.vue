@@ -9,10 +9,10 @@
           <h4 class="post-category">{{ recipe.category }}</h4>
           <h3 class="post-title">{{ recipe.name }}</h3>
           <p>
-            {{ dictionary.difficulty }}: {{ recipe.level }} / 5 &nbsp; &nbsp;
-            &nbsp; &nbsp; {{ dictionary.estimatedTime }}: {{ recipe.time
+            {{ dictionary.difficulty }}: {{ recipe.level ?? 0 }} / 5 &nbsp; &nbsp;
+            &nbsp; &nbsp; {{ dictionary.estimatedTime }}: {{ recipe.time ?? 0
             }}<br />
-            {{ dictionary.rating }}: {{ recipe.rating }} / 5
+            {{ dictionary.rating }}: {{ recipe.rating ?? 0 }} / 5
           </p>
         </div>
       </div>
@@ -107,7 +107,7 @@ export default {
       isLoggedIn: false,
       comment: "",
       recipe: {},
-      userRating: {},
+      userRating: { rating: 0 },
     };
   },
   created() {
@@ -138,10 +138,10 @@ export default {
       const id = parseInt(this.$route.params.id, 10);
       const recipes = getRecipesForLanguage(this.$props.language);
       this.recipe = recipes.find((recipe) => recipe.id === id) ?? {};
-
+      
       const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
 
-      this.userRating = (this.recipe.ratings ?? []).find(r => r.userId === userId)
+      this.userRating = (this.recipe.ratings ?? []).find(r => r.userId === userId) ?? { rating: 0 }
     },
     updateRating(newRating) {
       leaveRatingForRecipe(this.recipe.id, newRating);

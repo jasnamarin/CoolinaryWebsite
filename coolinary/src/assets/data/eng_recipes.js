@@ -11,6 +11,7 @@ export default [
 		level: '1',
 		video: [],
 		photo: ['r01', 'r02', 'thumbnail0'],
+		rating: 2,
 		ratings: [
 			{
 				userId: 0,

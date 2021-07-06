@@ -11,16 +11,23 @@ export default [
 		level: '1',
 		video: [],
 		photo: ['r01', 'r02', 'thumbnail0'],
+		rating: 2,
 		ratings: [
 			{
 				userId: 0,
-				rating: 1,
+				rating: 2,
+				recipeId: 0,
+				recipeName: 'Bruschetta with tomato',
+				user: 'Marko Vitiz',
 			},
 		],
 		comments: [
 			{
 				userId: 0,
-				comment: '',
+				comment: 'Awesome meal!',
+				recipeId: 0,
+				recipeName: 'Bruschetta with tomato',
+				user: 'Marko Vitiz',
 			},
 		],
 	},

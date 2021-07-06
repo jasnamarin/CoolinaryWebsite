@@ -112,43 +112,45 @@ export const getMyRatingsForLanguage = (language) => {
 
 const arrSum = arr => (arr ?? []).reduce((acc, curr) => acc + curr, 0)
 
-export const leaveRatingForRecipe = (recipeId, rating) => {
-	const recipe = getRecipes()[0].find(r => r.id === recipeId) ?? {}
+const leaveRatingForRecipeCB = (recipe, rating) => {
 	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+	const user = getUsers().find(u => u.id === userId)
 
 	const recipeRatings = (recipe.ratings ?? []).filter(r => r.userId !== userId)
-	const ratings = [...recipeRatings, { rating, userId }]
+	const ratings = [...recipeRatings, { rating, userId, recipeName: recipe.name, user: `${user.firstName} ${user.lastName}` }]
 	const avgRating = arrSum(ratings.map(r => r.rating)) / ratings.length
 
-	updateRecipe({ ...recipe, ratings, rating: avgRating })
+	return { ...recipe, ratings, rating: avgRating }
 }
 
-export const leaveACommentForRecipe = (recipeId, comment) => {
-	const recipe = getRecipes()[0].find(r => r.id === recipeId) ?? {}
+export const leaveRatingForRecipe = (recipeId, rating) => {
+	updateRecipe(recipeId, 'srRecipes', leaveRatingForRecipeCB, rating)
+	updateRecipe(recipeId, 'engRecipes', leaveRatingForRecipeCB, rating)
+}
+
+const leaveCommentForRecipeCB = (recipe, comment) => {
 	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
 	const user = getUsers().find(u => u.id === userId)
 
 	const userComment = { comment, userId, user: `${user.firstName} ${user.lastName}` } 
-	updateRecipe({ ...recipe, comments: [...(recipe.comments ?? []), userComment]})
 
-	return userComment
+	return { ...recipe, comments: [...(recipe.comments ?? []), userComment] }
 }
 
-const updateRecipe = recipe => {
-	const mapRecipe = r => r.id === recipe.id ? recipe : r
-	const [serbianRecipes, englishRecipes] = getRecipes()
+export const leaveACommentForRecipe = (recipeId, comment) => {
+	updateRecipe(recipeId, 'srRecipes', leaveCommentForRecipeCB, comment)
+	updateRecipe(recipeId, 'engRecipes', leaveCommentForRecipeCB, comment)
+}
 
-	const updatedSerbianRecipes = serbianRecipes.map(mapRecipe)
-	const updatedEnglishRecipes = englishRecipes.map(mapRecipe)
+const updateRecipe = (recipeId, language, callback, ...args) => {
+	const recipes = JSON.parse(window.localStorage.getItem(language));
+	const recipe = recipes.find(r => r.id === recipeId) ?? {}
+
+	const updatedRecipe = callback(recipe, ...args);
 
 	window.localStorage.setItem(
-		'srRecipes',
-		JSON.stringify(updatedSerbianRecipes)
-	)
-
-	window.localStorage.setItem(
-		'engRecipes',
-		JSON.stringify(updatedEnglishRecipes)
+		language,
+		JSON.stringify(recipes.map(r => r.id === updatedRecipe.id ? updatedRecipe : r))
 	)
 }
 
