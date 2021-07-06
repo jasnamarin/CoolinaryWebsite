@@ -58,10 +58,13 @@ export const saveRecipeForType = (data) => {
 		'srRecipes',
 		JSON.stringify(updatedSerbianRecipes)
 	)
+	
 	window.localStorage.setItem(
 		'engRecipes',
 		JSON.stringify(updatedEnglishRecipes)
 	)
+
+	return recipe
 }
 
 export const getMyRecipesForLanguage = (language) => {

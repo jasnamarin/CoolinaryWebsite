@@ -16,6 +16,7 @@ export default {
 
 <style lang="scss" scoped>
 textarea {
+  font-family: var(--font-primary);
   display: block;
   padding: 0.5rem 0.6rem;
   border: 1px solid var(--color-primary);
