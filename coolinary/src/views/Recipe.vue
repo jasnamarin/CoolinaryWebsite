@@ -41,10 +41,11 @@
       <hr/>
       <h2>{{ dictionary.rating }}: &nbsp;
         <star-rating
-          :inline="true" :star-size="25"
+          :inline="true" 
+          :star-size="25"
           :read-only="!isLoggedIn"
           :show-rating="false"
-          v-model:rating="_rating"
+          :v-model:rating="_rating"
         ></star-rating>
       </h2>
       <hr/>
@@ -57,7 +58,7 @@
           v-for="(comment, index) in recipe.comments"
           class="recipe-card"
         >
-          &#8220;{{ comment.comment }}&#8221;
+          &#8220;{{ comment.comment }}&#8221; - {{ comment.user }}
         </div>
         <div v-if="recipe.comments.length === 0">{{ dictionary.noComments }}.</div>
       </div>
@@ -120,7 +121,6 @@ export default {
   },
   methods: {
     getSrc(image) {
-      console.log(image)
       return `data:image/png;base64, ${this.$props.images[image]}`;
     }
   },
@@ -238,7 +238,7 @@ $shadow: rgba(0, 0, 0, 0.2);
   grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
   grid-gap: 1rem;
   max-width: 80rem;
-  margin: 1rem;
+  margin: 1rem 1rem 1rem 0;
 }
 
 .gallery {

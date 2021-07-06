@@ -40,6 +40,12 @@ export default {
   mounted() {
     this.isLoggedIn = !!window.localStorage.getItem("user");
     this.images = defaultThumbnails;
+
+    window.clearRecipesData = () => {
+      window.localStorage.removeItem("engRecipes");
+      window.localStorage.removeItem("srRecipes");
+      window.localStorage.removeItem("users");
+    }
   },
 };
 </script>
