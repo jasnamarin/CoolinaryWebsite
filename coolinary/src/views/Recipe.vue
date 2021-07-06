@@ -228,6 +228,10 @@ $shadow: rgba(0, 0, 0, 0.2);
   }
 }
 
+.comments > div {
+  margin-bottom: 8px;
+}
+
 .post-image {
   @include transition(opacity 0.3s ease);
   display: block;

@@ -1,76 +1,80 @@
 <template>
-  <div class="share-recipe">
-    <div class="share__container">
-      <form v-on:submit.prevent="onSubmit" class="share__form">
-        <h2>{{ dictionary.header }}</h2>
-        <hr />
-        <div class="share__form--label"><strong>Name</strong></div>
-        <Input v-model="name" />
-        <div class="share__form--label"><strong>Choose category</strong></div>
-        <select class="share__form--select" v-model="type">
-          <option value="">Select option</option>
-          <option value="main-dishes">Main Dishes</option>
-          <option value="appetizers">Appetizers</option>
-          <option value="snacks">Snacks</option>
-          <option value="desserts">Desserts</option>
-        </select>
-        <div class="share__form--label">
-          <strong
-            >Ingredients (<span
-              :class="ingredients.length === 1 ? 'disabled' : ''"
-              class="share__form--minus"
-              @click="removeIngredient"
-              >remove</span
+  <div class="share-recipe--container">
+    <div class="share-recipe">
+      <div class="share__container">
+        <form v-on:submit.prevent="onSubmit" class="share__form">
+          <h2>{{ dictionary.header }}</h2>
+          <hr />
+          <div class="share__form--label"><strong>Name</strong></div>
+          <Input v-model="name" />
+          <div class="share__form--label"><strong>Choose category</strong></div>
+          <select class="share__form--select" v-model="type">
+            <option value="">Select option</option>
+            <option value="main-dishes">Main Dishes</option>
+            <option value="appetizers">Appetizers</option>
+            <option value="snacks">Snacks</option>
+            <option value="desserts">Desserts</option>
+          </select>
+          <div class="share__form--label">
+            <strong
+              >Ingredients (<span
+                :class="ingredients.length === 1 ? 'disabled' : ''"
+                class="share__form--minus"
+                @click="removeIngredient"
+                >remove</span
+              >
+              /
+              <span class="share__form--plus" @click="addIngredient">add</span
+              >)</strong
             >
-            /
-            <span class="share__form--plus" @click="addIngredient">add</span
-            >)</strong
-          >
-        </div>
-        <Input
-          :key="index"
-          v-for="(ingredient, index) in ingredients"
-          v-model="ingredients[index]"
-        />
-        <div class="share__form--label"><strong>Instructions</strong></div>
-        <Textarea v-model="instructions" />
-        <div class="share__form--label"><strong>Difficulty</strong></div>
-        <star-rating
-          :show-rating="false"
-          :rating="level"
-          @update:rating="updateLevel"
-        ></star-rating>
-        <div class="share__form--label"><strong>Estimated time</strong></div>
-        <Input v-model="time" />
-        <div class="share__form--label">
-          <strong>Upload images</strong> (<input
-            ref="fileUpload"
-            type="file"
-            style="display: none"
-            multiple
-            @change="filesChange($event.target.files)"
-            accept="image/*"
-            class="input-file"
-          /><span class="aqua" @click="chooseImage">choose</span>)
-        </div>
-        <div class="share__form--imageContainer">
-          <img
-            class="share__form--image"
-            :key="image"
-            v-for="image in photo"
-            :src="`data:image/png;base64, ${images[image]}`"
+          </div>
+          <Input
+            :key="index"
+            v-for="(ingredient, index) in ingredients"
+            v-model="ingredients[index]"
           />
-        </div>
-        <AlertBox v-if="error !== ''" :text="_error" />
-        <hr />
-        <Button type="submit" :text="dictionary.submit" />
-      </form>
+          <div class="share__form--label"><strong>Instructions</strong></div>
+          <Textarea v-model="instructions" />
+          <div class="share__form--label"><strong>Difficulty</strong></div>
+          <star-rating
+            :show-rating="false"
+            :rating="level"
+            @update:rating="updateLevel"
+          ></star-rating>
+          <div class="share__form--label"><strong>Estimated time</strong></div>
+          <Input v-model="time" />
+          <div class="share__form--label">
+            <strong>Upload images</strong> (<input
+              ref="fileUpload"
+              type="file"
+              style="display: none"
+              multiple
+              @change="filesChange($event.target.files)"
+              accept="image/*"
+              class="input-file"
+            /><span class="aqua" @click="chooseImage">choose</span>)
+          </div>
+          <div class="share__form--imageContainer">
+            <img
+              class="share__form--image"
+              :key="image"
+              v-for="image in photo"
+              :src="`data:image/png;base64, ${images[image]}`"
+            />
+          </div>
+          <AlertBox v-if="error !== ''" :text="_error" />
+          <hr />
+          <div class="flex-center">
+            <Button type="submit" :text="dictionary.submit" />
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import { saveRecipeForType } from "@/utils"
+import { saveRecipeForType } from "@/utils";
 import StarRating from "vue-star-rating";
 
 import englishDict from "@/assets/language/shareRecipe/eng.json";
@@ -122,7 +126,8 @@ export default {
   methods: {
     onSubmit: function () {
       this.error = "";
-      const { instructions, name, ingredients, level, type, photo, time } = this;
+      const { instructions, name, ingredients, level, type, photo, time } =
+        this;
 
       if (name === "") {
         this.error = "errorInvalidName";
@@ -149,7 +154,7 @@ export default {
         return;
       }
 
-      if (time === '') {
+      if (time === "") {
         this.error = "errorInvalidTime";
         return;
       }
@@ -159,7 +164,15 @@ export default {
         return;
       }
 
-      const recipe = { name, type, ingredients, instructions, level, time, photo }
+      const recipe = {
+        name,
+        type,
+        ingredients,
+        instructions,
+        level,
+        time,
+        photo,
+      };
 
       const { id } = saveRecipeForType(recipe);
       this.$router.push(`/recipes/recipe/${id}`);
@@ -207,14 +220,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.share-recipe--container {
+  background-image: url("../assets/images/home_background.jpg");
+}
+
 .share-recipe {
-  margin: 200px;
-  padding-bottom: 5rem;
-  padding-top: 7rem;
+  padding: 160px 0 160px 0;
   background-size: cover;
   height: 100%;
   text-align: left;
-  overflow-y: auto;
+
+  & > * {
+    margin: 0 auto;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 0.75rem;
+    max-width: 500px;
+  }
 
   Input {
     width: 100%;
@@ -229,6 +251,12 @@ export default {
       border: 1px solid gray;
       outline: none;
     }
+  }
+
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
 
   .aqua {

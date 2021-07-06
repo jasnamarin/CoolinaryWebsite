@@ -9,5 +9,6 @@
     "/login": "Prijava na sistem",
     "/register": "Registracija",
     "/profile": "Moj Nalog",
-    "/about": "O Nama"
+    "/about": "O Nama",
+    "/share-recipe": "Podeli recept"
 }

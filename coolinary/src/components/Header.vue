@@ -344,6 +344,7 @@
 </template>
 
 <script>
+import { getRecipesForLanguage } from '@/utils'
 import rsLang from "@/assets/language/header/sr.json";
 import engLang from "@/assets/language/header/eng.json";
 import breadcrumbEnglish from "@/assets/language/breadcrumb/eng.json";
@@ -413,6 +414,13 @@ export default {
           : breadcrumbSerbian;
 
       const route = this.$route.matched[0]?.path
+      if (route === "/recipes/recipe/:id") {
+        const routeId = parseInt(this.$route.params.id, 10);
+        const recipe = getRecipesForLanguage(this.$props.language).find(r => r.id === routeId);
+        const { type } = recipe;
+        return `${breadcrumbDict['/recipes/' + type]} > ${recipe.name}`
+      }
+      
       return breadcrumbDict[route] ?? this.$route.fullPath;
     },
   },

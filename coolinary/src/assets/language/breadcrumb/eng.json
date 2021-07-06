@@ -9,5 +9,6 @@
     "/login": "Login",
     "/register": "Register",
     "/profile": "My Account",
-    "/about": "About Us"
+    "/about": "About Us",
+    "/share-recipe": "Share Recipe"
 }

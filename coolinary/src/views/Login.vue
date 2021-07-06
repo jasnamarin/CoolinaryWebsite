@@ -98,7 +98,7 @@ export default {
 .login {
   padding-bottom: 5rem;
   padding-top: 7rem;
-  background-image: url("../assets/images/login_background.jpg");
+  background-image: url("../assets/images/home_background.jpg");
   background-size: cover;
   width: 100vw;
   height: 100vh;
