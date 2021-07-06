@@ -412,7 +412,8 @@ export default {
           ? breadcrumbEnglish
           : breadcrumbSerbian;
 
-      return breadcrumbDict[this.$route.fullPath] ?? this.$route.fullPath;
+      const route = this.$route.matched[0]?.path
+      return breadcrumbDict[route] ?? this.$route.fullPath;
     },
   },
 };

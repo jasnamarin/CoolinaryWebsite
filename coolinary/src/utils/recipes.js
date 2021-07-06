@@ -2,6 +2,7 @@ import engRecipes from '../assets/data/eng_recipes.js'
 import srRecipes from '../assets/data/sr_recipes.js'
 
 import { defaultThumbnails } from '../assets/data/defaults'
+import { getUsers } from './users.js'
 
 export const getRecipes = () => {
 	if (!window.localStorage.getItem('engRecipes')) {
@@ -113,7 +114,8 @@ export const leaveRatingForRecipe = (recipeId, rating) => {
 	const recipe = getRecipes()[0].find(r => r.id === recipeId) ?? {}
 	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
 
-	const ratings = [...(recipe.ratings ?? []), { rating, userId }]
+	const recipeRatings = (recipe.ratings ?? []).filter(r => r.userId !== userId)
+	const ratings = [...recipeRatings, { rating, userId }]
 	const avgRating = Array.sum(ratings.map(r => r.rating)) / ratings.length
 
 	updateRecipe({ ...recipe, ratings, rating: avgRating })
@@ -122,8 +124,12 @@ export const leaveRatingForRecipe = (recipeId, rating) => {
 export const leaveACommentForRecipe = (recipeId, comment) => {
 	const recipe = getRecipes()[0].find(r => r.id === recipeId) ?? {}
 	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
+	const user = getUsers().find(u => u.id === userId)
 
-	updateRecipe({ ...recipe, comments: [...(recipe.comments ?? []), { comment, userId }]})
+	const userComment = { comment, userId, user: `${user.firstName} ${user.lastName}` } 
+	updateRecipe({ ...recipe, comments: [...(recipe.comments ?? []), userComment]})
+	
+	return userComment
 }
 
 const updateRecipe = recipe => {

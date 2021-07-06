@@ -5,6 +5,7 @@
     "/recipes/main-dishes": "Recepti > Glavna Jela",
     "/recipes/desserts": "Recepti > Deserti",
     "/recipes/snacks": "Recepti > Užine",
+    "/recipes/recipe/:id": "Recepti > Receipt",
     "/login": "Prijava na sistem",
     "/register": "Registracija",
     "/profile": "Moj Nalog",

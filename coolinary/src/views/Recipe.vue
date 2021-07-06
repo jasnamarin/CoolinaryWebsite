@@ -1,15 +1,18 @@
 <template>
   <div class="recipe">
-    <div class="recipe__overviewContainer" :style="{ backgroundImage: `url(${bannerSrc})` }">
+    <div
+      class="recipe__overviewContainer"
+      :style="{ backgroundImage: `url(${bannerSrc})` }"
+    >
       <div class="recipe__overview">
         <div>
           <h4 class="post-category">{{ recipe.category }}</h4>
           <h3 class="post-title">{{ recipe.name }}</h3>
           <p>
-            {{ dictionary.difficulty }}: {{ recipe.level }} / 5 &nbsp; &nbsp; &nbsp;
-            &nbsp; {{ dictionary.estimatedTime }}: {{ recipe.time }}
+            {{ dictionary.difficulty }}: {{ recipe.level }} / 5 &nbsp; &nbsp;
+            &nbsp; &nbsp; {{ dictionary.estimatedTime }}: {{ recipe.time }}
           </p>
-      </div>
+        </div>
       </div>
     </div>
 
@@ -27,56 +30,58 @@
       <hr />
 
       <p>
-        {{recipe.instructions}}
+        {{ recipe.instructions }}
       </p>
 
       <h2>{{ dictionary.gallery }}</h2>
       <hr />
       <div class="gallery-container">
         <div class="gallery" v-for="image in recipe.photo" :key="image">
-          <img :src="getSrc(image)" alt="">
+          <img :src="getSrc(image)" alt="" />
         </div>
       </div>
 
-      <hr/>
-      <h2>{{ dictionary.rating }}: &nbsp;
+      <hr />
+      <h2>
+        {{ dictionary.rating }}: &nbsp;
         <star-rating
-          :inline="true" 
+          :inline="true"
           :star-size="25"
           :read-only="!isLoggedIn"
           :show-rating="false"
           :v-model:rating="_rating"
         ></star-rating>
       </h2>
-      <hr/>
+      <hr />
 
       <h2>{{ dictionary.comments }}</h2>
       <hr />
       <div class="comments">
         <div
-          :key="recipe.comments.userId + index"
+          :key="index"
           v-for="(comment, index) in recipe.comments"
           class="recipe-card"
         >
           &#8220;{{ comment.comment }}&#8221; - {{ comment.user }}
         </div>
-        <div v-if="recipe.comments.length === 0">{{ dictionary.noComments }}.</div>
+        <div v-if="recipe.comments.length === 0">
+          {{ dictionary.noComments }}.
+        </div>
       </div>
 
       <h2>
         <Label for="comment" :text="dictionary.insertComment" />
         <span>
-        <Textarea v-model="comment" type="text" />
-        <Button type="submit" :text="dictionary.submit" />
+          <Textarea v-model="comment" type="text" />
+          <Button @click="addComment" :text="dictionary.submit" />
         </span>
       </h2>
     </div>
-
   </div>
 </template>
 
 <script>
-import { getRecipesForLanguage } from '@/utils'
+import { getRecipesForLanguage, leaveACommentForRecipe } from "@/utils";
 
 import engDictionary from "@/assets/language/recipe-card/eng.json";
 import srDictionary from "@/assets/language/recipe-card/sr.json";
@@ -88,31 +93,24 @@ import Label from "@/components/shared/Label.vue";
 import Button from "@/components/shared/Button.vue";
 
 import bannerAppetizer from "../assets/images/banners/appetizer.jpg";
-import bannerMainDish  from "../assets/images/banners/main-dish.jpg";
+import bannerMainDish from "../assets/images/banners/main-dish.jpg";
 import bannerDessert from "../assets/images/banners/dessert.jpg";
 import bannerSnack from "../assets/images/banners/snack.jpg";
 
 export default {
-  name: 'Recipe',
+  name: "Recipe",
   data() {
     return {
-      bannerMainDish,
-      bannerAppetizer,
-      bannerSnack,
-      bannerDessert,
       isLoggedIn: false,
+      comment: "",
+      recipe: {},
     };
   },
-  mounted() {
-    const id = parseInt(this.$route.params.id, 10);
-    const recipes = getRecipesForLanguage(this.$props.language)
-
-    this.recipe = recipes.find(recipe => recipe.id === id) ?? {};
+  created() {
+    this.refreshRecipe();
     this.isLoggedIn = !!window.localStorage.getItem("user");
   },
-  props: [
-    "language", "images",
-  ],
+  props: ["language", "images"],
   components: {
     StarRating,
     Textarea,
@@ -122,6 +120,20 @@ export default {
   methods: {
     getSrc(image) {
       return `data:image/png;base64, ${this.$props.images[image]}`;
+    },
+    addComment() {
+      if (this.comment === "") {
+        return;
+      }
+      
+      leaveACommentForRecipe(this.recipe.id, this.comment);
+      this.comment = "";
+      this.refreshRecipe();
+    },
+    refreshRecipe() {
+      const id = parseInt(this.$route.params.id, 10);
+      const recipes = getRecipesForLanguage(this.$props.language);
+      this.recipe = recipes.find((recipe) => recipe.id === id) ?? {};
     }
   },
   computed: {
@@ -136,28 +148,22 @@ export default {
     dictionary: function () {
       return this.$props.language === "english" ? engDictionary : srDictionary;
     },
-    recipe: function () {
-      const id = parseInt(this.$route.params.id, 10);
-      const recipes = getRecipesForLanguage(this.$props.language)
-      return recipes.find(recipe => recipe.id === id) ?? {};
-    },
     bannerSrc: function () {
-      if (this.recipe.type == "appetizers")
-        return bannerAppetizer;
-      else if (this.recipe.type == "main-dishes")
-        return bannerMainDish;
-      else if (this.recipe.type == "snacks")
-        return bannerSnack;
-      else
-        return bannerDessert;
-    }
+      if (this.recipe.type == "appetizers") return bannerAppetizer;
+      else if (this.recipe.type == "main-dishes") return bannerMainDish;
+      else if (this.recipe.type == "snacks") return bannerSnack;
+      else return bannerDessert;
+    },
   },
-}
+  watch: {
+    language: function () {
+      this.refreshRecipe();
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-
-
 $bg: #eedfcc;
 $text: #777;
 $black: #121212;
@@ -203,7 +209,6 @@ $shadow: rgba(0, 0, 0, 0.2);
   }
 }
 
-
 .post-image {
   @include transition(opacity 0.3s ease);
   display: block;
@@ -242,45 +247,44 @@ $shadow: rgba(0, 0, 0, 0.2);
 }
 
 .gallery {
-
-    img {
-      width: 100%;
-      height: 16vw;
-      object-fit: cover;
-      border-radius: 0.75rem;
-      transition: all 0.2s;
-
-      &:hover {
-        transition: all 0.2s;
-        box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);;
-      }
-    }
-  }
-
-  Button {
-    margin-top: 1rem;
-    min-width: 150px;
-    min-height: 30px;
-    background-color: gray;
+  img {
+    width: 100%;
+    height: 16vw;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    transition: all 0.2s;
 
     &:hover {
-      box-shadow: 0 0 5px gray;
+      transition: all 0.2s;
+      box-shadow: 0 0.1875rem 1.5rem rgba(0, 0, 0, 0.2);
     }
   }
+}
 
-  Textarea {
-    width: 30rem;
-    height: 12rem;
-    line-height: 2;
-    resize: none;
-    
-    &:focus {
-      transition: box-shadow 0.3s;
-      transition: border 0.3s;
-      box-shadow: 0 0 5px gray;
-      border: 1px solid gray;
-      outline: none;
-    }
+Button {
+  margin-top: 1rem;
+  min-width: 150px;
+  min-height: 30px;
+  background-color: gray;
+
+  &:hover {
+    box-shadow: 0 0 5px gray;
   }
+}
 
+Textarea {
+  width: 100%;
+  max-width: 450px;
+  height: 12rem;
+  line-height: 2;
+  resize: none;
+
+  &:focus {
+    transition: box-shadow 0.3s;
+    transition: border 0.3s;
+    box-shadow: 0 0 5px gray;
+    border: 1px solid gray;
+    outline: none;
+  }
+}
 </style>

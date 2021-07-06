@@ -38,7 +38,6 @@
       </div>
     </div>
   </div>
-  <router-view :recipe="recipe"></router-view>
 </template>
 
 <script>
