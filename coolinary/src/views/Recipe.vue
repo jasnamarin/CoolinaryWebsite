@@ -66,7 +66,7 @@
       <h2>
         <Label for="comment" :text="dictionary.insertComment" />
         <span>
-        <Input v-model="comment" type="text" />
+        <Textarea v-model="comment" type="text" />
         <Button type="submit" :text="dictionary.submit" />
         </span>
       </h2>
@@ -83,7 +83,7 @@ import srDictionary from "@/assets/language/recipe-card/sr.json";
 
 import StarRating from "vue-star-rating";
 
-import Input from "@/components/shared/Input.vue";
+import Textarea from "@/components/shared/Textarea.vue";
 import Label from "@/components/shared/Label.vue";
 import Button from "@/components/shared/Button.vue";
 
@@ -115,7 +115,7 @@ export default {
   ],
   components: {
     StarRating,
-    Input,
+    Textarea,
     Label,
     Button,
   },
@@ -268,11 +268,15 @@ $shadow: rgba(0, 0, 0, 0.2);
     }
   }
 
-  Input {
+  Textarea {
     width: 30rem;
+    height: 12rem;
     line-height: 2;
+    resize: none;
+    
     &:focus {
-      transition: all 0.3s;
+      transition: box-shadow 0.3s;
+      transition: border 0.3s;
       box-shadow: 0 0 5px gray;
       border: 1px solid gray;
       outline: none;
