@@ -133,7 +133,7 @@ export default {
   },
   methods: {
     getSrc(image) {
-      return `data:image/png;base64, ${this.$props.images[image]}`;
+      return `data:image/png;base64, ${this.$props.images[image] ?? this.$props.images.snacks}`;
     },
     addComment() {
       if (this.comment === "") {
