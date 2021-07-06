@@ -6,7 +6,12 @@
       v-on:switchLanguage="switchLanguage"
       :language="language"
     />
-    <router-view :images="images" :refreshApp="refreshApp" :language="language" />
+    <router-view
+      @updateImages="updateImages"
+      :images="images"
+      :refreshApp="refreshApp"
+      :language="language"
+    />
     <Footer />
   </div>
 </template>
@@ -36,10 +41,19 @@ export default {
     refreshApp() {
       this.isLoggedIn = !!window.localStorage.getItem("user");
     },
+    updateImages(images) {
+      this.images = { ...this.images, ...images };
+    },
   },
   mounted() {
     this.isLoggedIn = !!window.localStorage.getItem("user");
     this.images = defaultThumbnails;
+
+    window.clearRecipesData = () => {
+      window.localStorage.removeItem("engRecipes");
+      window.localStorage.removeItem("srRecipes");
+      window.localStorage.removeItem("users");
+    };
   },
 };
 </script>
@@ -60,7 +74,7 @@ export default {
 @font-face {
   font-family: "TitleFont";
   src: local("TitleFont"),
-   url('./assets/fonts/TitleFont2.ttf') format("truetype");
+    url("./assets/fonts/TitleFont2.ttf") format("truetype");
 }
 
 :root {
@@ -70,7 +84,7 @@ export default {
   --color-green: #17bf63;
   --color-red: #f4394d;
   --color-blue: #0d82eb;
-  --color-aqua: #65BBE9;
+  --color-aqua: #65bbe9;
 }
 
 *,

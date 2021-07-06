@@ -7,5 +7,12 @@
     "errorInvalidLastName": "You have to enter a valid last name.",
     "errorInvalidCredentials": "You have provided invalid credentials.",
     "errorEmailTaken": "That email is already taken.",
-    "errorUsernameTaken": "That username is already taken."
+    "errorUsernameTaken": "That username is already taken.",
+    "errorInvalidName": "You have to provide name for this recipe.",
+    "errorInvalidInstructions": "You have to provide valid instructions for this recipe.",
+    "errorInvalidIngredients": "You have to provide all ingredients.",
+    "errorInvalidDifficulty": "You have to select difficulty.",
+    "errorInvalidType": "You have to choose one of the four categories.",
+    "errorInvalidPhotos": "You have to choose atleast one photo.",
+    "errorInvalidTime": "You have to provide time."
 }

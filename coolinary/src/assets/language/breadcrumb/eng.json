@@ -5,8 +5,10 @@
     "/recipes/main-dishes": "Recipes > Main Dishes",
     "/recipes/desserts": "Recipes > Desserts",
     "/recipes/snacks": "Recipes > Snacks",
+    "/recipes/recipe/:id": "Recipes > Recipe",
     "/login": "Login",
     "/register": "Register",
     "/profile": "My Account",
-    "/about": "About Us"
+    "/about": "About Us",
+    "/share-recipe": "Share Recipe"
 }

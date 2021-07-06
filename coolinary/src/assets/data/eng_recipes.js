@@ -11,12 +11,14 @@ export default [
 		level: '1',
 		video: [],
 		photo: ['r01', 'r02', 'thumbnail0'],
+		rating: 2,
 		ratings: [
 			{
 				userId: 0,
 				rating: 2,
 				recipeId: 0,
 				recipeName: 'Bruschetta with tomato',
+				user: 'Marko Vitiz',
 			},
 		],
 		comments: [
@@ -25,6 +27,7 @@ export default [
 				comment: 'Awesome meal!',
 				recipeId: 0,
 				recipeName: 'Bruschetta with tomato',
+				user: 'Marko Vitiz',
 			},
 		],
 	},
@@ -60,6 +63,7 @@ export default [
 				rating: 5,
 				recipeId: 1,
 				recipeName: 'Pumpkin soup',
+				user: 'Marko Vitiz',
 			},
 		],
 		comments: [
@@ -68,6 +72,7 @@ export default [
 				comment: 'Very convenient!',
 				recipeId: 1,
 				recipeName: 'Pumpkin soup',
+				user: 'Marko Vitiz',
 			},
 		],
 	},

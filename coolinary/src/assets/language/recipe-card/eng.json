@@ -8,5 +8,8 @@
     "noComments": "No comments yet",
     "insertComment": "Add comment:",
     "submit": "Submit",
-    "rating": "Rating"
+    "rating": "Rating",
+    "rate": "Rate",
+    "pdf": "PDF",
+    "downloadPDF": "Download PDF"
 }

@@ -7,5 +7,13 @@
     "errorInvalidLastName": "Morate uneti prezime.",
     "errorInvalidCredentials": "Uneli ste pogrešne kredencijale.",
     "errorEmailTaken": "Elektronska pošta je zauzeta.",
-    "errorUsernameTaken": "Korisničko ime je zauzeto.."
+    "errorUsernameTaken": "Korisničko ime je zauzeto.",
+    "errorInvalidName": "Morati uneti validno ime.",
+    "errorInvalidInstructions": "Morate uneti instrukcije za recept.",
+    "errorInvalidIngredients": "Morate dodati sastojke.",
+    "errorInvalidDifficulty": "Morate uneti težinu.",
+    "errorInvalidType": "Morati izabrati kategoriju jela.",
+    "errorInvalidPhotos": "Morate dodati barem jednu fotografiju jela.",
+    "errorInvalidTime": "Morate uneti vreme pripreme."
+
 }
