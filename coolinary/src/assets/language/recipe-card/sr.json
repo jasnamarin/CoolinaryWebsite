@@ -9,5 +9,7 @@
     "insertComment": "Dodaj komentar:",
     "submit": "Potvrdi",
     "rating": "Ocena",
-    "rate": "Oceni"
+    "rate": "Oceni",
+    "pdf": "PDF",
+    "downloadPDF": "Preuzmite PDF"
 }

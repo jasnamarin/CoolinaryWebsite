@@ -9,9 +9,9 @@
           <h4 class="post-category">{{ recipe.category }}</h4>
           <h3 class="post-title">{{ recipe.name }}</h3>
           <p>
-            {{ dictionary.difficulty }}: {{ recipe.level ?? 0 }} / 5 &nbsp; &nbsp;
-            &nbsp; &nbsp; {{ dictionary.estimatedTime }}: {{ recipe.time ?? 0
-            }}<br />
+            {{ dictionary.difficulty }}: {{ recipe.level ?? 0 }} / 5 &nbsp;
+            &nbsp; &nbsp; &nbsp; {{ dictionary.estimatedTime }}:
+            {{ recipe.time ?? 0 }}<br />
             {{ dictionary.rating }}: {{ recipe.rating ?? 0 }} / 5
           </p>
         </div>
@@ -43,6 +43,11 @@
         </div>
       </div>
 
+      <hr />
+      <h2>{{ dictionary.pdf }}: &nbsp;</h2>
+      <a class="download_pdf" download="PDF" :href="_downloadPDF">{{
+        dictionary.downloadPDF
+      }}</a>
       <hr />
       <h2>
         {{ dictionary.rate }}: &nbsp;
@@ -84,7 +89,12 @@
 </template>
 
 <script>
-import { getRecipesForLanguage, leaveACommentForRecipe, leaveRatingForRecipe } from "@/utils";
+import {
+  getRecipesForLanguage,
+  leaveACommentForRecipe,
+  leaveRatingForRecipe,
+} from "@/utils";
+import pdfs from "@/assets/data/pdfs.js";
 
 import engDictionary from "@/assets/language/recipe-card/eng.json";
 import srDictionary from "@/assets/language/recipe-card/sr.json";
@@ -138,15 +148,17 @@ export default {
       const id = parseInt(this.$route.params.id, 10);
       const recipes = getRecipesForLanguage(this.$props.language);
       this.recipe = recipes.find((recipe) => recipe.id === id) ?? {};
-      
-      const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
 
-      this.userRating = (this.recipe.ratings ?? []).find(r => r.userId === userId) ?? { rating: 0 }
+      const userId = JSON.parse(window.localStorage.getItem("user"))?.id ?? -1;
+
+      this.userRating = (this.recipe.ratings ?? []).find(
+        (r) => r.userId === userId
+      ) ?? { rating: 0 };
     },
     updateRating(newRating) {
       leaveRatingForRecipe(this.recipe.id, newRating);
       this.refreshRecipe();
-    }
+    },
   },
   computed: {
     dictionary: function () {
@@ -157,6 +169,9 @@ export default {
       else if (this.recipe.type == "main-dishes") return bannerMainDish;
       else if (this.recipe.type == "snacks") return bannerSnack;
       else return bannerDessert;
+    },
+    _downloadPDF: function () {
+      return `data:application/pdf;base64, ${pdfs["default"]}`;
     },
   },
   watch: {
@@ -290,5 +305,10 @@ Textarea {
     border: 1px solid gray;
     outline: none;
   }
+}
+
+.download_pdf {
+  color: var(--color-aqua);
+  text-decoration: none;
 }
 </style>

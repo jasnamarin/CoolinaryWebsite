@@ -9,5 +9,7 @@
     "insertComment": "Add comment:",
     "submit": "Submit",
     "rating": "Rating",
-    "rate": "Rate"
+    "rate": "Rate",
+    "pdf": "PDF",
+    "downloadPDF": "Download PDF"
 }
