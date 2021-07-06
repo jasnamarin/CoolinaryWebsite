@@ -1,4 +1,12 @@
 {
     "difficulty": "Difficulty",
-    "estimatedTime": "Estimated time"
+    "estimatedTime": "Estimated time",
+    "instructions": "Instructions",
+    "ingredients": "Ingredients",
+    "gallery": "Gallery",
+    "comments": "Comments",
+    "noComments": "No comments yet",
+    "insertComment": "Add comment:",
+    "submit": "Submit",
+    "rating": "Rating"
 }
