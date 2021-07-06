@@ -22,7 +22,8 @@ export default {
     thumbUrl(filename) {
       return require(`../assets/images/thumbnails/${filename}`);
     },
-  },computed: {
+  },
+  computed: {
     dictionary: function () {
       return this.$props.language === "english" ? engThumbnails : rsThumbnails;
     },
@@ -36,7 +37,7 @@ export default {
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 1rem;
     max-width: 100rem;
-    margin: 4.5rem auto 0 auto;
+    margin: 5rem auto;
     padding: 7rem 5rem;
 
     $small: 900px;

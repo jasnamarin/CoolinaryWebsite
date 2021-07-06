@@ -1,4 +1,12 @@
 {
     "difficulty": "Težina",
-    "estimatedTime": "Vreme pripreme"
+    "estimatedTime": "Vreme pripreme",
+    "instructions": "Instrukcije",
+    "ingredients": "Sastojci",
+    "gallery": "Galerija",
+    "comments": "Komentari",
+    "noComments": "Još uvek nema komentara",
+    "insertComment": "Dodaj komentar:",
+    "submit": "Potvrdi",
+    "rating": "Ocena"
 }

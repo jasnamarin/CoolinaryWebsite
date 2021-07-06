@@ -92,6 +92,7 @@ export default {
   width: 100vw;
   height: 600px;
   background-image: url("../assets/images/home_background.jpg");
+  background-size: cover;
   color: white;
   display: flex;
   align-items: center;
