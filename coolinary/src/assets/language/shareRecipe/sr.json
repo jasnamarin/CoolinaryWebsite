@@ -1,4 +1,19 @@
 {
     "header": "Podeli recept",
-    "submit": "Dodaj"
+    "submit": "Dodaj",
+    "name": "Ime",
+    "chooseCategory": "Izaberi kategoriju",
+    "select": "Izaberi opciju",
+    "mainDishes": "Glavna jela",
+    "appetizers": "Predjela",
+    "snacks": "Užine",
+    "desserts": "Deserti",
+    "ingredients": "Sastojci",
+    "remove": "ukloni",
+    "add": "dodaj",
+    "instructions": "Instrukcije",
+    "difficulty": "Težina",
+    "time": "Vreme pripreme",
+    "upload": "Dodaj slike",
+    "choose": "izaberi"
 }

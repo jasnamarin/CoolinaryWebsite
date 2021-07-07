@@ -1,4 +1,19 @@
 {
     "header": "Share recipe",
-    "submit": "Submit"
+    "submit": "Submit",
+    "name": "Name",
+    "chooseCategory": "Choose category",
+    "select": "Select option",
+    "mainDishes": "Main dishes",
+    "appetizers": "Appetizers",
+    "snacks": "Snacks",
+    "desserts": "Desserts",
+    "ingredients": "Ingredients",
+    "remove": "remove",
+    "add": "add",
+    "instructions": "Instructions",
+    "difficulty": "Difficulty",
+    "time": "Estimated time",
+    "upload": "Upload images",
+    "choose": "choose"
 }
