@@ -120,7 +120,7 @@ const leaveRatingForRecipeCB = (recipe, rating) => {
 	const user = getUsers().find(u => u.id === userId)
 
 	const recipeRatings = (recipe.ratings ?? []).filter(r => r.userId !== userId)
-	const ratings = [...recipeRatings, { rating, userId, recipeName: recipe.name, user: `${user.firstName} ${user.lastName}` }]
+	const ratings = [...recipeRatings, { rating, userId, recipeId: recipe.id, recipeName: recipe.name, user: `${user.firstName} ${user.lastName}` }]
 	const avgRating = arrSum(ratings.map(r => r.rating)) / ratings.length
 
 	return { ...recipe, ratings, rating: avgRating }
@@ -135,7 +135,7 @@ const leaveCommentForRecipeCB = (recipe, comment) => {
 	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
 	const user = getUsers().find(u => u.id === userId)
 
-	const userComment = { comment, userId, user: `${user.firstName} ${user.lastName}` } 
+	const userComment = { comment, userId, user: `${user.firstName} ${user.lastName}`, recipeId: recipe.Id, recipeName: recipe.name } 
 
 	return { ...recipe, comments: [...(recipe.comments ?? []), userComment] }
 }
