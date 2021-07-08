@@ -315,4 +315,11 @@ Textarea {
   color: var(--color-aqua);
   text-decoration: none;
 }
+
+@media only screen and (max-width: 1024px) {
+  .recipe__details {
+    padding: 1rem 2rem 1rem 2rem;
+    text-align: left;
+  }
+}
 </style>
