@@ -77,7 +77,7 @@
         </div>
       </div>
 
-      <h2>
+      <h2 v-if="isLoggedIn">
         <Label for="comment" :text="dictionary.insertComment" />
         <span>
           <Textarea v-model="comment" type="text" />
