@@ -11,39 +11,26 @@ export default {
   data() {
     return {
       platform: null,
-      apikey: "xCMrsyzOx918YVI3-O5rw36wdrQ8eeyCJUQj-6NK2m8",
+      apikey: "	tag0P89vXG5Amy9D6jW9go93GRU2fq1i",
       center: { lat: 44.8055, lng: 20.4761 }
     };
   },
   async mounted() {
-    // Initialize the platform object:
-    const platform = new window.H.service.Platform({
-      apikey: this.apikey
+    window.L.mapquest.key = 'tag0P89vXG5Amy9D6jW9go93GRU2fq1i';
+
+    // 'map' refers to a <div> element with the ID map
+    const map = window.L.mapquest.map('map', {
+      center: [44.8055, 20.4761],
+      layers: window.L.mapquest.tileLayer('map'),
+      zoom: 18
     });
-    this.platform = platform;
-    this.initializeHereMap();
+
+    window.L.marker([44.8055, 20.4761], {
+      icon: window.L.mapquest.icons.marker(),
+      draggable: false
+    }).bindPopup('Denver, CO').addTo(map);
   },
-  methods: {
-    initializeHereMap() {
-      const mapContainer = this.$refs.hereMap;
-      const H = window.H;
-      const maptypes = this.platform.createDefaultLayers();
-
-      const map = new H.Map(mapContainer, maptypes.vector.normal.map, {
-        zoom: 17,
-        center: this.center
-      });
-
-      const etfMarker = new H.map.Marker(this.center);
-      map.addObject(etfMarker);
-
-      addEventListener("resize", () => map.getViewPort().resize());
-
-      new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
-
-      H.ui.UI.createDefault(map, maptypes);
-    }
-  }
+  methods: {}
 };
 </script>
 
