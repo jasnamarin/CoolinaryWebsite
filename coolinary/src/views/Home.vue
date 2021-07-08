@@ -65,13 +65,18 @@ export default {
   },
   props: ["language", "images"],
   mounted() {
-    this.bestRecipes = getBest3RecipesForLanguage();
+    this.bestRecipes = getBest3RecipesForLanguage(this.$props.language);
   },
   computed: {
     dictionary: function () {
       return this.$props.language === "english" ? engDictionary : srDictionary;
     },
   },
+  watch: {
+    language(newValue) {
+      this.bestRecipes = getBest3RecipesForLanguage(newValue);
+    }
+  }
 };
 </script>
 
