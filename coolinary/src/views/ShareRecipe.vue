@@ -5,26 +5,26 @@
         <form v-on:submit.prevent="onSubmit" class="share__form">
           <h2>{{ dictionary.header }}</h2>
           <hr />
-          <div class="share__form--label"><strong>Name</strong></div>
+          <div class="share__form--label"><strong>{{dictionary.name}}</strong></div>
           <Input v-model="name" />
-          <div class="share__form--label"><strong>Choose category</strong></div>
+          <div class="share__form--label"><strong>{{dictionary.chooseCategory}}</strong></div>
           <select class="share__form--select" v-model="type">
-            <option value="">Select option</option>
-            <option value="main-dishes">Main Dishes</option>
-            <option value="appetizers">Appetizers</option>
-            <option value="snacks">Snacks</option>
-            <option value="desserts">Desserts</option>
+            <option value="">{{dictionary.select}}</option>
+            <option value="main-dishes">{{dictionary.mainDishes}}</option>
+            <option value="appetizers">{{dictionary.appetizers}}</option>
+            <option value="snacks">{{dictionary.snacks}}</option>
+            <option value="desserts">{{dictionary.desserts}}</option>
           </select>
           <div class="share__form--label">
             <strong
-              >Ingredients (<span
+              >{{dictionary.ingredients}} (<span
                 :class="ingredients.length === 1 ? 'disabled' : ''"
                 class="share__form--minus"
                 @click="removeIngredient"
-                >remove</span
+                >{{dictionary.remove}}</span
               >
               /
-              <span class="share__form--plus" @click="addIngredient">add</span
+              <span class="share__form--plus" @click="addIngredient">{{dictionary.add}}</span
               >)</strong
             >
           </div>
@@ -33,18 +33,18 @@
             v-for="(ingredient, index) in ingredients"
             v-model="ingredients[index]"
           />
-          <div class="share__form--label"><strong>Instructions</strong></div>
+          <div class="share__form--label"><strong>{{dictionary.instructions}}</strong></div>
           <Textarea v-model="instructions" />
-          <div class="share__form--label"><strong>Difficulty</strong></div>
+          <div class="share__form--label"><strong>{{dictionary.difficulty}}</strong></div>
           <star-rating
             :show-rating="false"
             :rating="level"
             @update:rating="updateLevel"
           ></star-rating>
-          <div class="share__form--label"><strong>Estimated time</strong></div>
+          <div class="share__form--label"><strong>{{dictionary.time}}</strong></div>
           <Input v-model="time" />
           <div class="share__form--label">
-            <strong>Upload images</strong> (<input
+            <strong>{{dictionary.upload}}</strong> (<input
               ref="fileUpload"
               type="file"
               style="display: none"
@@ -52,7 +52,7 @@
               @change="filesChange($event.target.files)"
               accept="image/*"
               class="input-file"
-            /><span class="aqua" @click="chooseImage">choose</span>)
+            /><span class="aqua" @click="chooseImage">{{dictionary.choose}}</span>)
           </div>
           <div class="share__form--imageContainer">
             <img
