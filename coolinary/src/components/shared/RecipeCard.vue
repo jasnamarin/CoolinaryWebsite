@@ -20,7 +20,7 @@
           <star-rating
             :read-only="true"
             :show-rating="false"
-            :v-model:rating="_rating"
+            :rating="rating"
           ></star-rating>
         </p>
       </div>
