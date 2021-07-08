@@ -26,7 +26,7 @@
         v-for="(comment, index) in comments"
         class="recipe-card"
       >
-        &#8220;{{ comment.comment }}&#8221;&nbsp; -&nbsp;<router-link
+        &#8220;{{ comment.comment }}&#8221;&nbsp;-&nbsp;<router-link
           :to="'/recipes/recipe/' + comment.recipeId"
           ><span class="aqua_link">{{ comment.recipeName }}</span></router-link
         >
@@ -46,7 +46,7 @@
           ><span class="aqua_link">{{ rating.recipeName }}</span></router-link
         >
         {{ dictionary.with }} <strong>{{ rating.rating }}</strong
-        >&nbsp; {{ dictionary.stars }}.
+        >&nbsp;{{ dictionary.stars }}.
       </div>
       <div v-if="ratings.length === 0">{{ dictionary.noRatings }}.</div>
     </div>
