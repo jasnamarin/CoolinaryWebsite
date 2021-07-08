@@ -135,7 +135,7 @@ const leaveCommentForRecipeCB = (recipe, comment) => {
 	const userId = JSON.parse(window.localStorage.getItem('user'))?.id ?? -1
 	const user = getUsers().find(u => u.id === userId)
 
-	const userComment = { comment, userId, user: `${user.firstName} ${user.lastName}`, recipeId: recipe.Id, recipeName: recipe.name } 
+	const userComment = { comment, userId, user: `${user.firstName} ${user.lastName}`, recipeId: recipe.id, recipeName: recipe.name } 
 
 	return { ...recipe, comments: [...(recipe.comments ?? []), userComment] }
 }
